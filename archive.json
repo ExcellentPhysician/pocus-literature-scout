@@ -1,1 +1,29 @@
-[]
+[
+  {
+    "date": "2026-05-29",
+    "url": "https://excellentphysician.github.io/pocus-literature-scout/issues/pocus_literature_2026-05-29.html",
+    "articleCount": 27,
+    "highRelevanceCount": 16,
+    "journals": [
+      "Circulation",
+      "Crit Care",
+      "IEEE Trans Cybern",
+      "IEEE Trans Med Imaging",
+      "Chest",
+      "Circ Cardiovasc Imaging",
+      "Eur Heart J Digit Health",
+      "ERJ Open Res",
+      "Respir Med",
+      "Ann Fam Med",
+      "J Ultrasound Med",
+      "Intern Emerg Med",
+      "Emerg Med J",
+      "Ultrasound J",
+      "AEM Educ Train",
+      "JACC Case Rep",
+      "Open Heart",
+      "BMC Cardiovasc Disord",
+      "J Am Assoc Nurse Pract"
+    ]
+  }
+]
