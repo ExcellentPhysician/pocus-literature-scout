@@ -3,705 +3,714 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>POCUS Literature Scout — May 29, 2026</title>
+<title>POCUS Literature Scout — 2026-05-29</title>
 <style>
-  :root {
-    --bg: #0d1117;
-    --card-bg: #161b22;
-    --card-border: #30363d;
-    --accent: #58a6ff;
-    --high-rel: #2ea043;
-    --mod-rel: #d29922;
-    --bg-rel: #6e7681;
-    --text-primary: #e6edf3;
-    --text-secondary: #8b949e;
-    --tier1: #da3633;
-    --tier2: #d29922;
-    --tier3: #2ea043;
-    --tier4: #388bfd;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    background: var(--bg);
-    color: var(--text-primary);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;
-    line-height: 1.6;
-    padding: 24px 16px;
-  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0d1117; color: #e6edf3; font-family: -apple-system, 'Inter', system-ui, sans-serif; min-height: 100vh; }
+
   /* Header */
-  .header {
-    max-width: 960px;
-    margin: 0 auto 32px;
-    border-bottom: 1px solid var(--card-border);
-    padding-bottom: 24px;
-  }
-  .header-top {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 12px;
-  }
-  .pulse-svg {
-    width: 48px;
-    height: 48px;
-    flex-shrink: 0;
-  }
-  h1 {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: var(--accent);
-    letter-spacing: -0.5px;
-  }
-  .subtitle {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    margin-top: 4px;
-  }
-  .meta-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 12px;
-  }
-  .meta-pill {
-    background: #21262d;
-    border: 1px solid var(--card-border);
-    border-radius: 20px;
-    padding: 4px 12px;
-    font-size: 0.82rem;
-    color: var(--text-secondary);
-  }
-  .meta-pill span { color: var(--text-primary); font-weight: 600; }
+  .header { background: linear-gradient(135deg, #161b22 0%, #0d1117 100%); border-bottom: 1px solid #30363d; padding: 2rem 2rem 1.5rem; position: relative; overflow: hidden; }
+  .header-wave { position: absolute; top: 0; right: 0; opacity: 0.07; }
+  .header-top { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; }
+  .header-icon { font-size: 2rem; }
+  .header h1 { font-size: 1.75rem; font-weight: 700; color: #58a6ff; letter-spacing: -0.02em; }
+  .header-subtitle { color: #8b949e; font-size: 0.9rem; margin-bottom: 0.75rem; }
+  .header-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .meta-chip { background: #21262d; border: 1px solid #30363d; border-radius: 20px; padding: 0.25rem 0.75rem; font-size: 0.8rem; color: #8b949e; }
+  .meta-chip span { color: #58a6ff; font-weight: 600; }
+
+  /* Stats bar */
+  .stats-bar { background: #161b22; border-bottom: 1px solid #30363d; padding: 0.75rem 2rem; display: flex; gap: 2rem; flex-wrap: wrap; }
+  .stat { font-size: 0.85rem; color: #8b949e; }
+  .stat strong { color: #e6edf3; }
 
   /* Filters */
-  .filters {
-    max-width: 960px;
-    margin: 0 auto 24px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    align-items: center;
-  }
-  .filter-btn {
-    background: #21262d;
-    border: 1px solid var(--card-border);
-    color: var(--text-secondary);
-    border-radius: 6px;
-    padding: 6px 14px;
-    cursor: pointer;
-    font-size: 0.85rem;
-    transition: all 0.15s;
-  }
-  .filter-btn:hover, .filter-btn.active {
-    background: #30363d;
-    color: var(--text-primary);
-    border-color: var(--accent);
-  }
-  .filter-count {
-    background: #30363d;
-    border-radius: 10px;
-    padding: 1px 7px;
-    font-size: 0.75rem;
-    margin-left: 5px;
-    color: var(--text-secondary);
-  }
+  .filters { padding: 1rem 2rem; display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; border-bottom: 1px solid #30363d; background: #0d1117; position: sticky; top: 0; z-index: 10; }
+  .filter-label { color: #8b949e; font-size: 0.8rem; margin-right: 0.25rem; }
+  .filter-btn { background: #21262d; border: 1px solid #30363d; color: #8b949e; border-radius: 6px; padding: 0.35rem 0.9rem; font-size: 0.8rem; cursor: pointer; transition: all 0.15s; white-space: nowrap; }
+  .filter-btn:hover { border-color: #58a6ff; color: #58a6ff; }
+  .filter-btn.active { background: #1f3a5f; border-color: #58a6ff; color: #58a6ff; font-weight: 600; }
 
   /* Grid */
-  .grid {
-    max-width: 960px;
-    margin: 0 auto;
-    display: grid;
-    gap: 16px;
-  }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(420px, 1fr)); gap: 1rem; padding: 1.5rem 2rem; }
 
-  /* Article card */
-  .card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 10px;
-    padding: 20px 22px;
-    transition: border-color 0.2s, transform 0.15s;
-    position: relative;
-  }
-  .card:hover {
-    border-color: var(--accent);
-    transform: translateY(-1px);
-  }
-  .card-header {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 10px;
-  }
-  .journal-badge {
-    border-radius: 5px;
-    padding: 3px 10px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-  .tier1 { background: rgba(218,54,51,0.2); color: var(--tier1); border: 1px solid var(--tier1); }
-  .tier2 { background: rgba(210,153,34,0.2); color: var(--tier2); border: 1px solid var(--tier2); }
-  .tier3 { background: rgba(46,160,67,0.2); color: var(--tier3); border: 1px solid var(--tier3); }
-  .tier4 { background: rgba(56,139,253,0.2); color: var(--tier4); border: 1px solid var(--tier4); }
+  /* Cards */
+  .card { background: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 1.25rem; transition: border-color 0.2s, box-shadow 0.2s; position: relative; overflow: hidden; }
+  .card:hover { border-color: #58a6ff; box-shadow: 0 0 0 1px #58a6ff22, 0 4px 20px #00000060; }
+  .card.hidden { display: none; }
 
-  .rel-badge {
-    border-radius: 5px;
-    padding: 3px 10px;
-    font-size: 0.75rem;
-    font-weight: 600;
-  }
-  .rel-high { background: rgba(46,160,67,0.15); color: var(--high-rel); border: 1px solid rgba(46,160,67,0.4); }
-  .rel-mod  { background: rgba(210,153,34,0.15); color: var(--mod-rel); border: 1px solid rgba(210,153,34,0.4); }
-  .rel-bg   { background: rgba(110,118,129,0.15); color: var(--bg-rel); border: 1px solid rgba(110,118,129,0.4); }
+  .card-header { display: flex; align-items: flex-start; gap: 0.6rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+  .journal-badge { border-radius: 4px; padding: 0.2rem 0.6rem; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; white-space: nowrap; flex-shrink: 0; }
+  .tier1 { background: #3d1214; color: #f85149; border: 1px solid #da3633; }
+  .tier2 { background: #2d2008; color: #e3b341; border: 1px solid #d29922; }
+  .tier3 { background: #0f2d1a; color: #3fb950; border: 1px solid #2ea043; }
+  .tier4 { background: #0d2044; color: #79c0ff; border: 1px solid #388bfd; }
 
-  .card-title {
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 4px;
-    line-height: 1.4;
-  }
-  .card-title a {
-    color: inherit;
-    text-decoration: none;
-  }
-  .card-title a:hover { color: var(--accent); text-decoration: underline; }
+  .relevance-badge { border-radius: 4px; padding: 0.2rem 0.5rem; font-size: 0.68rem; font-weight: 600; flex-shrink: 0; }
+  .rel-high { background: #0f2d1a; color: #3fb950; border: 1px solid #2ea043; }
+  .rel-moderate { background: #1f2d3d; color: #79c0ff; border: 1px solid #388bfd; }
 
-  .card-meta {
-    font-size: 0.82rem;
-    color: var(--text-secondary);
-    margin-bottom: 12px;
-  }
-  .card-meta span { margin-right: 12px; }
+  .card-title { font-size: 0.92rem; font-weight: 600; color: #e6edf3; line-height: 1.45; margin-bottom: 0.4rem; }
+  .card-title a { color: inherit; text-decoration: none; transition: color 0.15s; }
+  .card-title a:hover { color: #58a6ff; }
 
-  .summary {
-    font-size: 0.9rem;
-    color: #c9d1d9;
-    line-height: 1.65;
-    border-left: 3px solid var(--accent);
-    padding-left: 12px;
-    margin-bottom: 0;
-  }
+  .card-meta { font-size: 0.78rem; color: #8b949e; margin-bottom: 0.75rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .card-meta span { display: flex; align-items: center; gap: 0.25rem; }
 
-  /* Abstract on hover */
-  .abstract-section {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.35s ease, padding 0.3s ease;
-    padding-top: 0;
-  }
-  .card:hover .abstract-section {
-    max-height: 500px;
-    padding-top: 14px;
-  }
-  .abstract-label {
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-    color: var(--text-secondary);
-    margin-bottom: 6px;
-  }
-  .abstract-text {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 8;
-    -webkit-box-orient: vertical;
-  }
+  .summary { font-size: 0.82rem; color: #c9d1d9; line-height: 1.6; margin-bottom: 0; }
 
-  /* Section label */
-  .section-label {
-    max-width: 960px;
-    margin: 24px auto 10px;
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--text-secondary);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--card-border);
-  }
+  /* Abstract reveal on hover */
+  .abstract-wrap { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+  .card:hover .abstract-wrap { max-height: 400px; }
+  .abstract { font-size: 0.78rem; color: #8b949e; line-height: 1.6; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid #21262d; }
+  .abstract-label { font-size: 0.7rem; font-weight: 700; color: #58a6ff; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.3rem; }
+
+  /* DOI link */
+  .doi-link { display: inline-flex; align-items: center; gap: 0.3rem; font-size: 0.75rem; color: #58a6ff; text-decoration: none; margin-top: 0.5rem; opacity: 0.8; transition: opacity 0.15s; }
+  .doi-link:hover { opacity: 1; }
 
   /* Footer */
-  .footer {
-    max-width: 960px;
-    margin: 48px auto 0;
-    border-top: 1px solid var(--card-border);
-    padding-top: 20px;
-    text-align: center;
-    font-size: 0.82rem;
-    color: var(--text-secondary);
-  }
-  .footer a { color: var(--accent); text-decoration: none; }
+  .footer { text-align: center; padding: 2rem; color: #8b949e; font-size: 0.8rem; border-top: 1px solid #30363d; margin-top: 1rem; }
 
-  /* Hidden by filter */
-  .card.hidden { display: none; }
+  /* Section dividers */
+  .tier-section { padding: 0.5rem 2rem 0; }
+  .tier-heading { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #8b949e; padding: 0.5rem 0 0; display: flex; align-items: center; gap: 0.5rem; }
+  .tier-heading::after { content: ''; flex: 1; height: 1px; background: #30363d; }
+
+  @media (max-width: 600px) {
+    .grid { grid-template-columns: 1fr; padding: 1rem; }
+    .header, .stats-bar, .filters { padding-left: 1rem; padding-right: 1rem; }
+  }
 </style>
 </head>
 <body>
 
-<!-- Header -->
 <div class="header">
+  <svg class="header-wave" width="400" height="120" viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 60 Q20 20 40 60 Q60 100 80 60 Q100 20 120 60 Q140 100 160 60 Q180 20 200 60 Q220 100 240 60 Q260 20 280 60 Q300 100 320 60 Q340 20 360 60 Q380 100 400 60" stroke="#58a6ff" stroke-width="2.5" fill="none"/>
+    <path d="M0 80 Q25 50 50 80 Q75 110 100 80 Q125 50 150 80 Q175 110 200 80 Q225 50 250 80 Q275 110 300 80 Q325 50 350 80 Q375 110 400 80" stroke="#58a6ff" stroke-width="1.5" fill="none" opacity="0.5"/>
+  </svg>
   <div class="header-top">
-    <svg class="pulse-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="48" height="48" rx="10" fill="#161b22"/>
-      <path d="M4 24 L12 24 L15 16 L19 32 L22 20 L26 28 L29 24 L44 24" stroke="#58a6ff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-      <circle cx="24" cy="24" r="2.5" fill="#58a6ff" opacity="0.7"/>
-    </svg>
-    <div>
-      <h1>POCUS Literature Scout</h1>
-      <div class="subtitle">Weekly automated scan powered by PubMed · Based on articles retrieved from PubMed</div>
-    </div>
+    <div class="header-icon">🔬</div>
+    <h1>POCUS Literature Scout</h1>
   </div>
-  <div class="meta-pills">
-    <div class="meta-pill">Articles since <span>April 29, 2026</span> (first run — 30-day window)</div>
-    <div class="meta-pill"><span>15</span> POCUS-relevant articles found</div>
-    <div class="meta-pill"><span>11</span> High relevance</div>
-    <div class="meta-pill">Sorted by journal impact factor</div>
+  <div class="header-subtitle">Weekly automated literature scan for point-of-care ultrasound &amp; emergency medicine ultrasound</div>
+  <div class="header-meta">
+    <div class="meta-chip">Articles since <span>2026-04-29</span> (first run — 30-day window)</div>
+    <div class="meta-chip"><span>27</span> new articles found</div>
+    <div class="meta-chip"><span>16</span> high relevance</div>
+    <div class="meta-chip">Run date: <span>2026-05-29</span></div>
   </div>
 </div>
 
-<!-- Filters -->
+<div class="stats-bar">
+  <div class="stat"><strong>27</strong> total articles</div>
+  <div class="stat"><strong>16</strong> 🟢 High relevance</div>
+  <div class="stat"><strong>11</strong> 🔵 Moderate relevance</div>
+  <div class="stat"><strong>4</strong> journals with IF &gt; 5</div>
+  <div class="stat">Top pick: <strong>Automated AI Echo for Congenital Heart Disease</strong> — Circulation</div>
+</div>
+
 <div class="filters">
-  <button class="filter-btn active" onclick="filterArticles('all', this)">All <span class="filter-count">15</span></button>
-  <button class="filter-btn" onclick="filterArticles('high', this)">🔬 High Relevance <span class="filter-count">11</span></button>
-  <button class="filter-btn" onclick="filterArticles('ai', this)">🤖 AI &amp; Technology <span class="filter-count">6</span></button>
-  <button class="filter-btn" onclick="filterArticles('lung', this)">🫁 Lung &amp; Airway US <span class="filter-count">4</span></button>
-  <button class="filter-btn" onclick="filterArticles('cardiac', this)">🫀 Cardiac US <span class="filter-count">4</span></button>
-  <button class="filter-btn" onclick="filterArticles('education', this)">📚 Education <span class="filter-count">3</span></button>
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" onclick="filterCards('all', this)">All (27)</button>
+  <button class="filter-btn" onclick="filterCards('high', this)">🟢 High Relevance (16)</button>
+  <button class="filter-btn" onclick="filterCards('moderate', this)">🔵 Moderate (11)</button>
+  <button class="filter-btn" onclick="filterCards('training', this)">📚 Training &amp; Education</button>
+  <button class="filter-btn" onclick="filterCards('ai', this)">🤖 AI &amp; Technology</button>
+  <button class="filter-btn" onclick="filterCards('clinical', this)">🏥 Clinical Applications</button>
 </div>
 
-<!-- ===== TIER 1: IF > 30 ===== -->
-<div class="section-label">🔴 Tier 1 · IF &gt; 30</div>
-<div class="grid">
+<div class="grid" id="card-grid">
 
-  <!-- JAMA: TTVR real-world -->
-  <div class="card" data-rel="mod" data-tags="cardiac">
+  <!-- ===== TIER 1: IF > 30 ===== -->
+
+  <div class="card" data-relevance="high" data-topic="ai">
     <div class="card-header">
-      <span class="journal-badge tier1">JAMA · IF ~63</span>
-      <span class="rel-badge rel-mod">Moderate Relevance</span>
+      <span class="journal-badge tier1">Circulation</span>
+      <span class="relevance-badge rel-high">🔬 High</span>
+      <span class="relevance-badge" style="background:#1a1a2e;color:#a371f7;border:1px solid #6e40c9;font-size:0.68rem;padding:0.2rem 0.5rem;border-radius:4px;">IF ~35</span>
     </div>
-    <div class="card-title">
-      <a href="https://doi.org/10.1001/jama.2026.3446" target="_blank">
-        Real-World Outcomes of Transcatheter Tricuspid Valve Replacement: Analysis From the STS/ACC TVT Registry
-      </a>
-    </div>
+    <div class="card-title"><a href="https://pubmed.ncbi.nlm.nih.gov/41902792/" target="_blank">Automated Echocardiographic Detection of Congenital Heart Disease Using Artificial Intelligence</a></div>
     <div class="card-meta">
-      <span>Makkar RR, Gupta A, O'Neill BP et al.</span>
-      <span>May 12, 2026</span>
-      <span>PMID: 41973411</span>
+      <span>👤 Lukyanenko P et al.</span>
+      <span>📅 Mar 2026</span>
+      <span><a href="https://doi.org/10.1161/CIRCULATIONAHA.126.079781" target="_blank" class="doi-link">↗ PubMed</a></span>
     </div>
-    <div class="summary">
-      This real-world registry study of 1,034 TTVR procedures at 82 US centers confirmed 98.4% TR elimination and significant improvement in NYHA class and KCCQ-OS scores at 30 days, consistent with the TRISCEND II pivotal trial. Echocardiographic assessment was central to confirming TR reduction in all patients. Relevant for EM: severe TR increasingly presents to the ED, and bedside echo assessment of TR severity and hemodynamic impact informs management of these complex patients.
-    </div>
-    <div class="abstract-section">
-      <div class="abstract-label">Abstract</div>
-      <div class="abstract-text">Among 1034 attempted procedures at 82 centers (mean age 77.1 years; 69.1% female; 73.2% NYHA class III/IV), a valve was successfully implanted in 1017 patients (98.4%). Mild or less TR was achieved in 98.4% of patients post procedure and in 97.7% at 30 days. At 30 days, all-cause mortality was 3.1%; stroke, 0.2%; bleeding, 7.9%; new CIED, 15.9% in CIED-naive patients; heart failure hospitalization, 3.1%. There were significant improvements in NYHA functional class (class I/II, 82.7%; P&lt;.001) and mean KCCQ-OS score (22.4 points; P&lt;.001) from baseline to 30 days.</div>
+    <div class="summary">The EchoFocus-CHD AI model was developed to automatically detect 12 critical and 8 noncritical congenital heart disease lesions from echocardiographic images, achieving expert-level diagnostic accuracy. The model's performance generalized across diverse global settings, demonstrating robustness beyond the training center. This could fundamentally democratize CHD diagnosis in resource-limited environments where expert echocardiographers are scarce or maldistributed.</div>
+    <div class="abstract-wrap">
+      <div class="abstract">
+        <div class="abstract-label">Abstract</div>
+        Delayed or missed diagnosis of congenital heart disease (CHD) contributes to excess pediatric mortality worldwide. Echocardiography is central to diagnosing and triaging CHD, yet expert interpretation remains a scarce and maldistributed global resource. We developed EchoFocus-CHD, an AI-enabled model for automated detection of 12 critical and 8 noncritical CHD lesions. The model demonstrated high sensitivity and specificity across validation cohorts, with performance approaching expert cardiologist level.
+      </div>
     </div>
   </div>
 
-  <!-- Circulation: AI echo for CHD -->
-  <div class="card" data-rel="high" data-tags="cardiac ai">
+  <!-- ===== TIER 2: IF 10-30 ===== -->
+
+  <div class="card" data-relevance="high" data-topic="clinical">
     <div class="card-header">
-      <span class="journal-badge tier1">Circulation · IF ~35</span>
-      <span class="rel-badge rel-high">🔬 High Relevance</span>
+      <span class="journal-badge tier2">Crit Care</span>
+      <span class="relevance-badge rel-high">🔬 High</span>
+      <span class="relevance-badge" style="background:#1a1a2e;color:#a371f7;border:1px solid #6e40c9;font-size:0.68rem;padding:0.2rem 0.5rem;border-radius:4px;">IF ~10</span>
     </div>
-    <div class="card-title">
-      <a href="https://doi.org/10.1161/CIRCULATIONAHA.126.079781" target="_blank">
-        Automated Echocardiographic Detection of Congenital Heart Disease Using Artificial Intelligence
-      </a>
-    </div>
+    <div class="card-title"><a href="https://pubmed.ncbi.nlm.nih.gov/42169048/" target="_blank">Point-of-care ultrasound in hemodynamically unstable pulmonary embolism</a></div>
     <div class="card-meta">
-      <span>Lukyanenko P, Ghelani SJ, Yang Y et al.</span>
-      <span>Mar 28, 2026</span>
-      <span>PMID: 41902792</span>
+      <span>👤 Moreno-Loaiza O et al.</span>
+      <span>📅 May 2026</span>
+      <span><a href="https://doi.org/10.1186/s13054-026-06097-4" target="_blank" class="doi-link">↗ PubMed</a></span>
     </div>
-    <div class="summary">
-      EchoFocus-CHD, trained on 3.4 million echo videos from 54,727 studies at Boston Children's Hospital, achieved AUROC 0.94 for detecting critical congenital heart disease with a positive likelihood ratio of 7.50. The model uses a view-agnostic transformer architecture (PanEcho), prioritizing the same views an expert would. This is a landmark demonstration that AI can deliver expert-level CHD detection from echo—directly relevant to POCUS as handheld devices become AI-enabled for automated cardiac screening in resource-limited settings.
+    <div class="summary">This review examines POCUS as the primary bedside modality when critically ill PE patients cannot safely be transported for CT-PA, presenting a multi-organ protocol integrating cardiac echo, lung ultrasound, and lower-extremity compression. POCUS findings including RV dilation, septal bowing, and lack of lung sliding guide immediate risk stratification and thrombolytic decisions. A must-read for emergency and critical care clinicians managing massive or submassive PE at the bedside.</div>
+    <div class="abstract-wrap">
+      <div class="abstract">
+        <div class="abstract-label">Abstract</div>
+        The recent AHA guideline on acute pulmonary embolism updates the framework for diagnosis, risk stratification, and management. CT pulmonary angiography remains the reference standard, but in critically ill patients with hemodynamic or respiratory instability, transport for definitive imaging may be unsafe. In this context, bedside POCUS — particularly multi-organ assessment integrating cardiac, lung, and vascular ultrasound — becomes central to early decision-making about systemic thrombolysis or surgical embolectomy.
+      </div>
     </div>
-    <div class="abstract-section">
-      <div class="abstract-label">Abstract</div>
-      <div class="abstract-text">EchoFocus-CHD showed excellent internal ability to detect critical CHD (AUROC 0.94; PLR 7.50; NLR 0.14) and individual critical lesions (AUROC 0.83-1.00). Performance declined on a referral cohort (AUROC 0.77), coinciding with greater expert disagreement. Retraining on all available US patients improved international critical CHD detection (AUROC 0.87). Explainability analyses demonstrated model prioritization of clinically relevant views across cohorts.</div>
+  </div>
+
+  <div class="card" data-relevance="moderate" data-topic="ai">
+    <div class="card-header">
+      <span class="journal-badge tier2">IEEE Trans Cybern</span>
+      <span class="relevance-badge rel-moderate">🔵 Moderate</span>
+      <span class="relevance-badge" style="background:#1a1a2e;color:#a371f7;border:1px solid #6e40c9;font-size:0.68rem;padding:0.2rem 0.5rem;border-radius:4px;">IF ~12</span>
+    </div>
+    <div class="card-title"><a href="https://pubmed.ncbi.nlm.nih.gov/42202177/" target="_blank">AI-Enhanced High-Precision Segmentation and Perfusion Analysis in Myocardial Contrast Echocardiography</a></div>
+    <div class="card-meta">
+      <span>👤 Duan Y et al.</span>
+      <span>📅 May 2026</span>
+      <span><a href="https://doi.org/10.1109/TCYB.2026.3691410" target="_blank" class="doi-link">↗ PubMed</a></span>
+    </div>
+    <div class="summary">This study presents an AI pipeline for myocardial contrast echocardiography (MCE) that performs automated segmentation, segmental division, and perfusion parameter extraction, addressing noise and artifact challenges in MCE data. Evaluated on a custom dataset from Fuwai Hospital, the method improves quantitative myocardial perfusion assessment. Represents a step toward fully automated coronary artery disease evaluation via contrast echo.</div>
+    <div class="abstract-wrap">
+      <div class="abstract">
+        <div class="abstract-label">Abstract</div>
+        Myocardial contrast echocardiography (MCE) facilitates quantification of myocardial perfusion and aids in diagnosing coronary artery disease. Noise and artifacts in MCE data often hinder accurate perfusion analysis. This study presents an AI-enhanced method that divides perfusion quantification into three steps: segmentation, segmental division, and parameter extraction. An AI model specifically designed for myocardial segmentation in MCE data was evaluated on a custom dataset from Fuwai Hospital, China.
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-relevance="moderate" data-topic="ai">
+    <div class="card-header">
+      <span class="journal-badge tier2">IEEE Trans Med Imaging</span>
+      <span class="relevance-badge rel-moderate">🔵 Moderate</span>
+      <span class="relevance-badge" style="background:#1a1a2e;color:#a371f7;border:1px solid #6e40c9;font-size:0.68rem;padding:0.2rem 0.5rem;border-radius:4px;">IF ~8</span>
+    </div>
+    <div class="card-title"><a href="https://pubmed.ncbi.nlm.nih.gov/42202178/" target="_blank">Echocardiography Video Segmentation via Mamba-based Spatiotemporal Synergistic Network and Adaptive-dynamic Learning</a></div>
+    <div class="card-meta">
+      <span>👤 Sun Y et al.</span>
+      <span>📅 May 2026</span>
+      <span><a href="https://doi.org/10.1109/TMI.2026.3697520" target="_blank" class="doi-link">↗ PubMed</a></span>
+    </div>
+    <div class="summary">MSSNet is a novel semi-supervised architecture using the Mamba state-space model for automatic echocardiographic video segmentation, addressing speckle noise, dynamic ventricular motion, limited annotations, and the need for real-time clinical inference. The approach outperforms prior deep learning methods on echocardiographic benchmarks. Advances the pipeline toward fully automated echo interpretation at clinically usable speeds.</div>
+    <div class="abstract-wrap">
+      <div class="abstract">
+        <div class="abstract-label">Abstract</div>
+        Automatic echocardiography video segmentation is crucial for accurate diagnosis of cardiovascular diseases. Deep learning methods still face challenges including speckle noise, dynamic ventricular changes, limited annotations, and the requirement for real-time inference. MSSNet is a novel semi-supervised method based on the efficient Mamba sequence modeling architecture. To enhance noise robustness and foreground tracking, spatiotemporal synergistic modules and adaptive-dynamic learning strategies are incorporated.
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-relevance="moderate" data-topic="clinical">
+    <div class="card-header">
+      <span class="journal-badge tier2">Chest</span>
+      <span class="relevance-badge rel-moderate">🔵 Moderate</span>
+      <span class="relevance-badge" style="background:#1a1a2e;color:#a371f7;border:1px solid #6e40c9;font-size:0.68rem;padding:0.2rem 0.5rem;border-radius:4px;">IF ~9</span>
+    </div>
+    <div class="card-title"><a href="https://pubmed.ncbi.nlm.nih.gov/41956150/" target="_blank">Procedural Techniques, Airway Management, and Specimen Acquisition for Peripheral Lung Transbronchial and Endobronchial Ultrasound-Guided Cryobiopsy: A Modified Delphi Consensus Statement</a></div>
+    <div class="card-meta">
+      <span>👤 Beattie JA et al.</span>
+      <span>📅 May 2026</span>
+      <span><a href="https://doi.org/10.1016/j.chest.2026.03.027" target="_blank" class="doi-link">↗ PubMed</a></span>
+    </div>
+    <div class="summary">This modified Delphi consensus statement addresses the rapid expansion of transbronchial cryobiopsy using the 1.1mm single-use cryoprobe beyond ILD, covering indications, techniques, specimen handling, and safety for non-ILD diagnostic contexts. Practice variability has outpaced formal guidance as use accelerates. Provides actionable consensus recommendations for pulmonologists expanding endobronchial ultrasound-guided programs.</div>
+    <div class="abstract-wrap">
+      <div class="abstract">
+        <div class="abstract-label">Abstract</div>
+        Transbronchial cryobiopsy has expanded beyond its established role in interstitial lung disease, driven by release of single-use cryoprobes, most notably the 1.1mm cryoprobe. As use accelerates across non-ILD diagnostic contexts, practice variability has outpaced evidence generation and formal guidance. The objective was to formulate clinical consensus statements regarding indications, tools, techniques, specimen handling, safety considerations, and requisite procedural expertise for the use of the 1.1mm cryoprobe.
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TIER 3: IF 3-10 ===== -->
+
+  <div class="card" data-relevance="high" data-topic="ai">
+    <div class="card-header">
+      <span class="journal-badge tier3">Circ Cardiovasc Imaging</span>
+      <span class="relevance-badge rel-high">🔬 High</span>
+      <span class="relevance-badge" style="background:#1a1a2e;color:#a371f7;border:1px solid #6e40c9;font-size:0.68rem;padding:0.2rem 0.5rem;border-radius:4px;">IF ~6</span>
+    </div>
+    <div class="card-title"><a href="https://pubmed.ncbi.nlm.nih.gov/42200278/" target="_blank">Multimodal Artificial Intelligence for Cardiac Amyloidosis Diagnosis: Integrating Echocardiography With Clinical and Laboratory Data for Improved Detection</a></div>
+    <div class="card-meta">
+      <span>👤 Slivnick JA et al.</span>
+      <span>📅 May 2026</span>
+      <span><a href="https://doi.org/10.1161/CIRCIMAGING.126.019610" target="_blank" class="doi-link">↗ PubMed</a></span>
+    </div>
+    <div class="summary">A combined AI echo-clinical model integrating TTE biomarkers with clinical and laboratory data was developed and validated for cardiac amyloidosis (CA) detection. The multimodal approach outperformed single-source AI tools, improving both sensitivity and specificity for this notoriously underdiagnosed condition. Timely CA diagnosis is critical given the emergence of targeted therapies that alter disease trajectory.</div>
+    <div class="abstract-wrap">
+      <div class="abstract">
+        <div class="abstract-label">Abstract</div>
+        Cardiac amyloidosis is an underdiagnosed yet treatable cause of heart failure in which timely diagnosis is essential to initiate life-prolonging therapies. AI-based tools using transthoracic echocardiography, electrocardiography, or electronic health records have demonstrated promise for CA detection, but most rely on single data sources. The authors evaluated whether integrating clinical, laboratory, and TTE biomarkers improves the performance of an existing TTE-based AI model, finding superior performance with the multimodal approach.
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-relevance="high" data-topic="ai">
+    <div class="card-header">
+      <span class="journal-badge tier3">Eur Heart J Digit Health</span>
+      <span class="relevance-badge rel-high">🔬 High</span>
+      <span class="relevance-badge" style="background:#1a1a2e;color:#a371f7;border:1px solid #6e40c9;font-size:0.68rem;padding:0.2rem 0.5rem;border-radius:4px;">IF ~5</span>
+    </div>
+    <div class="card-title"><a href="https://pubmed.ncbi.nlm.nih.gov/42169733/" target="_blank">Smarter FoCUS: AI-guided focused cardiac ultrasound enables novice detection of left ventricular dysfunction</a></div>
+    <div class="card-meta">
+      <span>👤 Kane CJ et al.</span>
+      <span>📅 May 2026</span>
+      <span><a href="https://doi.org/10.1093/ehjdh/ztag066" target="_blank" class="doi-link">↗ PubMed</a></span>
+    </div>
+    <div class="summary">In this prospective trial of 496 adults referred for echocardiography, novice operators with only a 4-hour workshop performed FoCUS using a Philips Lumify device with real-time AI guidance and interpretation, achieving strong performance for detecting reduced LVEF. AI dramatically compressed the learning curve typically required for basic echo competency. Highly relevant to EM and primary care POCUS deployment, especially in resource-limited settings.</div>
+    <div class="abstract-wrap">
+      <div class="abstract">
+        <div class="abstract-label">Abstract</div>
+        Heart failure is prevalent but lacks a cost-effective screening option. Against formal echocardiography, the authors assessed diagnostic performance of focused cardiac ultrasound (FoCUS) performed by novice users guided and interpreted by AI for assessment of LVEF. Novice operators underwent a 4-hour imaging workshop then performed FoCUS using a Philips Lumify with real-time AI guidance. Results from 496 prospectively enrolled adults showed AI-guided novice FoCUS had high sensitivity and specificity for detecting left ventricular dysfunction.
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-relevance="moderate" data-topic="ai">
+    <div class="card-header">
+      <span class="journal-badge tier3">Eur Heart J Digit Health</span>
+      <span class="relevance-badge rel-moderate">🔵 Moderate</span>
+      <span class="relevance-badge" style="background:#1a1a2e;color:#a371f7;border:1px solid #6e40c9;font-size:0.68rem;padding:0.2rem 0.5rem;border-radius:4px;">IF ~5</span>
+    </div>
+    <div class="card-title"><a href="https://pubmed.ncbi.nlm.nih.gov/42169734/" target="_blank">Deep learning model for genotype prediction from echocardiographic videos in non-ischaemic dilated cardiomyopathy</a></div>
+    <div class="card-meta">
+      <span>👤 Kiyohara Y et al.</span>
+      <span>📅 May 2026</span>
+      <span><a href="https://doi.org/10.1093/ehjdh/ztag068" target="_blank" class="doi-link">↗ PubMed</a></span>
+    </div>
+    <div class="summary">A deep learning model trained on apical four-chamber echocardiographic videos from DCM patients predicts genotype positivity, aiming to identify which patients warrant genetic testing (which predicts poor prognosis but remains underutilized). The model uses video-based spatiotemporal features from routine echo clips. Could guide genetic counseling and family cascade screening decisions using tools already deployed in cardiology clinics.</div>
+    <div class="abstract-wrap">
+      <div class="abstract">
+        <div class="abstract-label">Abstract</div>
+        Non-ischaemic dilated cardiomyopathy is frequently characterized by the presence of pathogenic germline variants, and genotype positivity predicts poor prognosis. Despite its importance, genetic testing remains underutilized. A deep learning model was developed to predict genotype positivity using apical four-chamber echocardiographic videos from patients with DCM who had undergone genetic testing at the University of Tokyo Hospital from 2014–2022.
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-relevance="high" data-topic="clinical">
+    <div class="card-header">
+      <span class="journal-badge tier3">ERJ Open Res</span>
+      <span class="relevance-badge rel-high">🔬 High</span>
+      <span class="relevance-badge" style="background:#1a1a2e;color:#a371f7;border:1px solid #6e40c9;font-size:0.68rem;padding:0.2rem 0.5rem;border-radius:4px;">IF ~4</span>
+    </div>
+    <div class="card-title"><a href="https://pubmed.ncbi.nlm.nih.gov/42206018/" target="_blank">Diaphragm ultrasound and surface electromyography as predictors of clinical deterioration in acute exacerbations of COPD</a></div>
+    <div class="card-meta">
+      <span>👤 de Boer WS et al.</span>
+      <span>📅 May 2026</span>
+      <span><a href="https://doi.org/10.1183/23120541.01102-2025" target="_blank" class="doi-link">↗ PubMed</a></span>
+    </div>
+    <div class="summary">In 51 hospitalized AECOPD patients without respiratory acidosis, diaphragm ultrasound (within 48h of admission and at discharge) correlated with dyspnea scores and predicted clinical deterioration including escalation of care. This prospective observational study demonstrates diaphragm US as a practical serial monitoring tool beyond ventilator weaning contexts. Expands the evidence base for bedside diaphragm assessment in acute respiratory illness.</div>
+    <div class="abstract-wrap">
+      <div class="abstract">
+        <div class="abstract-label">Abstract</div>
+        Acute exacerbations of COPD without respiratory acidosis lack reliable physiological markers to monitor treatment response or predict clinical deterioration. In 51 hospitalised AECOPD patients, diaphragm ultrasound and surface electromyography were performed within 48h of admission and at discharge. Associations between study parameters and dyspnoea (Borg scores and mMRC scales) were assessed, and their predictive value for clinical outcomes (progression to ventilatory support, readmission) was evaluated.
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-relevance="high" data-topic="clinical">
+    <div class="card-header">
+      <span class="journal-badge tier3">Respir Med</span>
+      <span class="relevance-badge rel-high">🔬 High</span>
+      <span class="relevance-badge" style="background:#1a1a2e;color:#a371f7;border:1px solid #6e40c9;font-size:0.68rem;padding:0.2rem 0.5rem;border-radius:4px;">IF ~4</span>
+    </div>
+    <div class="card-title"><a href="https://pubmed.ncbi.nlm.nih.gov/42203185/" target="_blank">Sonographic pleural line excursion in children with bronchospasm: a prospective single-center study</a></div>
+    <div class="card-meta">
+      <span>👤 Scheier E et al.</span>
+      <span>📅 May 2026</span>
+      <span><a href="https://doi.org/10.1016/j.rmed.2026.108916" target="_blank" class="doi-link">↗ PubMed</a></span>
+    </div>
+    <div class="summary">Fifty children presenting to a pediatric ED with acute wheeze underwent M-mode lung ultrasound measurement of pleural line excursion; a multivariate model combining this measure with SpO₂, age-adjusted heart rate, and age predicted hospital admission. The objective sonographic parameter improved on subjective clinical asthma severity scoring. Offers an objective, radiation-free adjunct to standard pediatric asthma assessment in the ED.</div>
+    <div class="abstract-wrap">
+      <div class="abstract">
+        <div class="abstract-label">Abstract</div>
+        Pediatric asthma scoring relies on subjective findings with poor interrater reliability. Children presenting to a pediatric ED with acute wheeze requiring beta-agonist therapy were prospectively studied, measuring pleural line excursion (maximum minus minimum vertical displacement) from M-mode ultrasound video using a custom algorithm. A multivariate logistic regression model combining excursion with SpO₂, age-adjusted heart-rate percentile and age was constructed to predict hospital admission.
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-relevance="high" data-topic="ai">
+    <div class="card-header">
+      <span class="journal-badge tier3">Ann Fam Med</span>
+      <span class="relevance-badge rel-high">🔬 High</span>
+      <span class="relevance-badge" style="background:#1a1a2e;color:#a371f7;border:1px solid #6e40c9;font-size:0.68rem;padding:0.2rem 0.5rem;border-radius:4px;">IF ~4</span>
+    </div>
+    <div class="card-title"><a href="https://pubmed.ncbi.nlm.nih.gov/42191361/" target="_blank">Diagnostic Performance of General Practitioners in Carotid Plaque Detection Using AI-Enhanced Point-of-Care Ultrasound After Systematic Training</a></div>
+    <div class="card-meta">
+      <span>👤 Liu X et al.</span>
+      <span>📅 May 2026</span>
+      <span><a href="https://doi.org/10.1370/afm.250351" target="_blank" class="doi-link">↗ PubMed</a></span>
+    </div>
+    <div class="summary">After systematic training, 7 GPs in Shanghai used AI-enhanced POCUS to detect carotid plaques in patients with high atherosclerotic risk, achieving high diagnostic accuracy in this trial. AI assistance meaningfully improved GP performance compared to unaided sonography. Demonstrates a scalable model for extending vascular screening into primary care settings using AI-augmented POCUS.</div>
+    <div class="abstract-wrap">
+      <div class="abstract">
+        <div class="abstract-label">Abstract</div>
+        While POCUS has been integrated into daily practice by GPs in some countries, there is a paucity of literature from Chinese GPs. AI-assisted diagnosis is increasingly applied to imaging equipment. This study explored the diagnostic performance of GPs in carotid plaque detection using AI-enhanced POCUS after systematic training. 7 GPs received training then recruited patients with high atherosclerotic cardiovascular disease risk; sensitivity and specificity were evaluated against radiology-performed duplex ultrasound as reference.
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-relevance="high" data-topic="clinical">
+    <div class="card-header">
+      <span class="journal-badge tier3">J Ultrasound Med</span>
+      <span class="relevance-badge rel-high">🔬 High</span>
+      <span class="relevance-badge" style="background:#1a1a2e;color:#a371f7;border:1px solid #6e40c9;font-size:0.68rem;padding:0.2rem 0.5rem;border-radius:4px;">IF ~3.5</span>
+    </div>
+    <div class="card-title"><a href="https://pubmed.ncbi.nlm.nih.gov/42200685/" target="_blank">A Predictive Model for Differential Diagnosis of Cardiogenic and Non-cardiogenic Dyspnea in Patients with Chronic Kidney Disease Based on Cardio and Lung Ultrasound Features</a></div>
+    <div class="card-meta">
+      <span>👤 Zhao H et al.</span>
+      <span>📅 May 2026</span>
+      <span><a href="https://doi.org/10.1002/jum.70317" target="_blank" class="doi-link">↗ PubMed</a></span>
+    </div>
+    <div class="summary">In 271 CKD stage 3-5 patients, multivariable logistic regression identified E/e′, IVC diameter, bilateral B-pattern, pleural line irregularities, and consolidations as discriminators between cardiogenic pulmonary edema and non-cardiogenic dyspnea, achieving excellent ROC and calibration. A simplified β-weighted scoring tool was derived and validated. Directly addresses the common clinical challenge of interpreting B-lines in dialysis patients where multiple causes overlap.</div>
+    <div class="abstract-wrap">
+      <div class="abstract">
+        <div class="abstract-label">Abstract</div>
+        Lung ultrasound B-lines quantify fluid status during hemodialysis, but may indicate not only cardiogenic pulmonary edema but also pneumonia or interstitial lung disease, posing challenges for fluid therapy decisions. A combined cardiac-LUS diagnostic model was developed in 215 training and 56 validation CKD participants. Multivariable regression identified E/e′ (OR 1.18), IVC diameter (OR 1.24), bilateral symmetric B-pattern (OR 9.72), bilateral continuous B-pattern (OR 13.78), and pleural/consolidation findings as discriminators. A simplified scoring system was derived.
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-relevance="high" data-topic="clinical">
+    <div class="card-header">
+      <span class="journal-badge tier3">J Ultrasound Med</span>
+      <span class="relevance-badge rel-high">🔬 High</span>
+      <span class="relevance-badge" style="background:#1a1a2e;color:#a371f7;border:1px solid #6e40c9;font-size:0.68rem;padding:0.2rem 0.5rem;border-radius:4px;">IF ~3.5</span>
+    </div>
+    <div class="card-title"><a href="https://pubmed.ncbi.nlm.nih.gov/42104527/" target="_blank">Point-of-Care Ultrasound for the Diagnosis of Hip Effusion in Children Presenting to the Emergency Department With Atraumatic Limp or Hip Pain: A Scoping Review</a></div>
+    <div class="card-meta">
+      <span>👤 Chan N et al.</span>
+      <span>📅 May 2026</span>
+      <span><a href="https://doi.org/10.1002/jum.70286" target="_blank" class="doi-link">↗ PubMed</a></span>
+    </div>
+    <div class="summary">This scoping review of POCUS for pediatric hip effusion (2000–2025, across PubMed/EMBASE/Cochrane) synthesizes evidence showing high diagnostic accuracy, faster diagnosis, and radiation elimination compared to plain radiographs. Secondary outcomes addressed provider satisfaction and impact on care pathways. Supports broader adoption of ED-based POCUS hip scanning in children with atraumatic limp.</div>
+    <div class="abstract-wrap">
+      <div class="abstract">
+        <div class="abstract-label">Abstract</div>
+        This scoping review examined evidence for POCUS in detecting hip effusion in children presenting with atraumatic limp or hip pain. A PRISMA-ScR guided search across PubMed, EMBASE, and Cochrane from January 2000 to October 2025 was conducted; all study designs were considered. Primary outcome was diagnostic accuracy of POCUS for hip effusion; secondary outcomes included provider satisfaction, time to diagnosis, and impact on radiation exposure and clinical pathways.
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-relevance="moderate" data-topic="training">
+    <div class="card-header">
+      <span class="journal-badge tier3">BMC Med Educ</span>
+      <span class="relevance-badge rel-moderate">🔵 Moderate</span>
+      <span class="relevance-badge" style="background:#1a1a2e;color:#a371f7;border:1px solid #6e40c9;font-size:0.68rem;padding:0.2rem 0.5rem;border-radius:4px;">IF ~3</span>
+    </div>
+    <div class="card-title"><a href="https://pubmed.ncbi.nlm.nih.gov/42192390/" target="_blank">Point-of-care ultrasound in prehospital emergency care: attitudes, facilitators and barriers</a></div>
+    <div class="card-meta">
+      <span>👤 Oteir AO et al.</span>
+      <span>📅 May 2026</span>
+      <span><a href="https://doi.org/10.1186/s12909-026-09500-4" target="_blank" class="doi-link">↗ PubMed</a></span>
+    </div>
+    <div class="summary">This multicenter cross-sectional study surveyed Jordanian EMS providers on prehospital POCUS attitudes, finding generally positive perceptions but significant implementation barriers including equipment availability and training gaps. Facilitators included belief in POCUS utility for trauma and cardiac arrest scenarios. Provides a baseline for programs seeking to expand prehospital ultrasound capacity in the Middle East.</div>
+    <div class="abstract-wrap">
+      <div class="abstract">
+        <div class="abstract-label">Abstract</div>
+        This study explored EMS providers' perceptions of prehospital POCUS, including perceived usefulness, facilitators, and barriers to implementing it in Jordanian prehospital settings. A multicenter cross-sectional study used a structured questionnaire with four-point Likert-scale attitude items and dichotomous facilitator/barrier responses. A total attitude score was calculated by summing Likert-scale responses. Descriptive statistics and multivariate analysis were used to identify predictors of positive attitudes.
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-relevance="moderate" data-topic="clinical">
+    <div class="card-header">
+      <span class="journal-badge tier3">Intern Emerg Med</span>
+      <span class="relevance-badge rel-moderate">🔵 Moderate</span>
+      <span class="relevance-badge" style="background:#1a1a2e;color:#a371f7;border:1px solid #6e40c9;font-size:0.68rem;padding:0.2rem 0.5rem;border-radius:4px;">IF ~3</span>
+    </div>
+    <div class="card-title"><a href="https://pubmed.ncbi.nlm.nih.gov/42149409/" target="_blank">Bedside ultrasound diagnosis of spontaneous hepatic hematoma in the emergency setting</a></div>
+    <div class="card-meta">
+      <span>👤 Cumarín Solórzano JJ et al.</span>
+      <span>📅 May 2026</span>
+      <span><a href="https://doi.org/10.1007/s11739-026-04390-2" target="_blank" class="doi-link">↗ PubMed</a></span>
+    </div>
+    <div class="summary">Case report documenting bedside ultrasound diagnosis of spontaneous hepatic hematoma in the emergency setting, a rare but life-threatening condition. Demonstrates the role of bedside sonography in detecting unexpected hepatic pathology during abdominal POCUS. Reinforces the value of systematic scanning for right upper quadrant pain beyond gallbladder pathology.</div>
+    <div class="abstract-wrap">
+      <div class="abstract">
+        <div class="abstract-label">Abstract</div>
+        Abstract not available in PubMed at time of indexing. Case report documenting a rare case of spontaneous hepatic hematoma diagnosed by bedside emergency ultrasound, with description of sonographic findings and clinical management implications.
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TIER 4: IF < 3 ===== -->
+
+  <div class="card" data-relevance="high" data-topic="clinical">
+    <div class="card-header">
+      <span class="journal-badge tier4">Emerg Med J</span>
+      <span class="relevance-badge rel-high">🔬 High</span>
+    </div>
+    <div class="card-title"><a href="https://pubmed.ncbi.nlm.nih.gov/42167905/" target="_blank">Point-of-care ultrasound by trained emergency physicians versus radiologists for deep vein thrombosis diagnosis: a prospective blinded study on diagnostic accuracy and time efficiency</a></div>
+    <div class="card-meta">
+      <span>👤 Koylu R et al.</span>
+      <span>📅 May 2026</span>
+      <span><a href="https://doi.org/10.1136/emermed-2025-215770" target="_blank" class="doi-link">↗ PubMed</a></span>
+    </div>
+    <div class="summary">In 309 ED patients with suspected DVT, trained emergency physicians performed compression ultrasonography; this was compared against radiologist Doppler US as reference in a prospective blinded design. EP-performed POCUS showed high sensitivity and specificity with significantly faster time-to-diagnosis. One of the largest prospective studies validating EP-performed DVT ultrasound — directly supports removing radiologist bottleneck for DVT workup.</div>
+    <div class="abstract-wrap">
+      <div class="abstract">
+        <div class="abstract-label">Abstract</div>
+        This study evaluated the diagnostic accuracy and time-to-diagnosis of compression ultrasonography by trained emergency physicians versus radiologist-performed Doppler ultrasonography in patients with suspected deep vein thrombosis. 309 patients with suspected lower-extremity DVT presenting to a tertiary ED between November 2022 and October 2024 were prospectively enrolled. All patients underwent EP compression US followed by radiologist Doppler US as reference standard.
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-relevance="high" data-topic="clinical">
+    <div class="card-header">
+      <span class="journal-badge tier4">Emerg Med J</span>
+      <span class="relevance-badge rel-high">🔬 High</span>
+    </div>
+    <div class="card-title"><a href="https://pubmed.ncbi.nlm.nih.gov/41730670/" target="_blank">Evaluating the TWIST score and point-of-care ultrasound for paediatric testicular torsion</a></div>
+    <div class="card-meta">
+      <span>👤 Nakamura T et al.</span>
+      <span>📅 May 2026</span>
+      <span><a href="https://doi.org/10.1136/emermed-2025-215067" target="_blank" class="doi-link">↗ PubMed</a></span>
+    </div>
+    <div class="summary">This retrospective study evaluated the real-world diagnostic performance of TWIST score and POCUS for pediatric testicular torsion when performed by emergency physicians and pediatricians rather than urologists or radiologists. Results characterize performance in the actual clinicians most likely to evaluate these children first. Informs whether POCUS + TWIST can safely streamline the diagnostic pathway without specialist involvement.</div>
+    <div class="abstract-wrap">
+      <div class="abstract">
+        <div class="abstract-label">Abstract</div>
+        An acute scrotum is a urological emergency; testicular torsion can result in testicular necrosis unless quickly diagnosed. Along with POCUS, the TWIST (Testicular Workup for Ischemia and Suspected Torsion) score can differentiate testicular torsion from other causes. This retrospective study evaluated their diagnostic performance when undertaken by emergency physicians and pediatricians rather than urologists/radiologists in the ED.
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-relevance="moderate" data-topic="clinical">
+    <div class="card-header">
+      <span class="journal-badge tier4">Ultrasound J</span>
+      <span class="relevance-badge rel-moderate">🔵 Moderate</span>
+    </div>
+    <div class="card-title"><a href="https://pubmed.ncbi.nlm.nih.gov/42163724/" target="_blank">Modified lung ultrasound score and related findings in children with Mycoplasma pneumoniae pneumonia</a></div>
+    <div class="card-meta">
+      <span>👤 Xie W et al.</span>
+      <span>📅 May 2026</span>
+      <span><a href="https://doi.org/10.5826/tuj.2026.18875" target="_blank" class="doi-link">↗ PubMed</a></span>
+    </div>
+    <div class="summary">In 186 children with suspected pneumonia, the modified lung ultrasound score (MLUS) incorporating B-lines, consolidations, and pleural findings was assessed for its ability to differentiate mycoplasma, viral, and bacterial pneumonia etiologies. MLUS showed useful discriminating capacity for early pathogen identification in children. May reduce unnecessary broad-spectrum antibiotic prescribing when chest X-ray findings are non-specific.</div>
+    <div class="abstract-wrap">
+      <div class="abstract">
+        <div class="abstract-label">Abstract</div>
+        Different pathogens cause pneumonia with overlapping symptoms, labs, and imaging, complicating early diagnosis. The modified lung ultrasound score (MLUS) shows value in lung disease evaluation, but its ability to differentiate pathogens is unclear. 186 children with suspected pneumonia were enrolled; clinical data, labs, lung ultrasound findings (A-lines, B-lines, solid lesions, pleural effusion), and pathogen results were recorded. MLUS was assigned and its discriminating ability for mycoplasma, viral, and bacterial pneumonia was assessed.
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-relevance="high" data-topic="ai">
+    <div class="card-header">
+      <span class="journal-badge tier4">Ultrasound J</span>
+      <span class="relevance-badge rel-high">🔬 High</span>
+    </div>
+    <div class="card-title"><a href="https://pubmed.ncbi.nlm.nih.gov/42163701/" target="_blank">Diagnostic performance of artificial intelligence in fracture detection with ultrasound: A systematic review and meta-analysis</a></div>
+    <div class="card-meta">
+      <span>👤 Xie M et al.</span>
+      <span>📅 May 2026</span>
+      <span><a href="https://doi.org/10.5826/tuj.2026.18778" target="_blank" class="doi-link">↗ PubMed</a></span>
+    </div>
+    <div class="summary">This systematic review and meta-analysis evaluated deep learning models for bone fracture detection on ultrasound images, using radiography as reference standard. AI models showed promising pooled sensitivity and specificity for fracture detection across the included studies. AI-augmented POCUS fracture assessment could extend diagnostic capacity in austere environments where X-ray access is limited.</div>
+    <div class="abstract-wrap">
+      <div class="abstract">
+        <div class="abstract-label">Abstract</div>
+        Bone fractures are common in acute care, and POCUS is an emerging diagnostic tool that can be complementary to or alternative to X-ray in some cases. With the rise of AI in diagnostic imaging, this systematic review and meta-analysis evaluated the diagnostic performance of deep learning models for detecting bone fractures on ultrasound images, using radiographic imaging with expert interpretation as the reference standard. Comprehensive searches were conducted from inception to the search date.
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-relevance="high" data-topic="training">
+    <div class="card-header">
+      <span class="journal-badge tier4">Ultrasound J</span>
+      <span class="relevance-badge rel-high">🔬 High</span>
+    </div>
+    <div class="card-title"><a href="https://pubmed.ncbi.nlm.nih.gov/42159600/" target="_blank">Point-of-care ultrasound training using near-peer training and remote supervision: A pilot randomized controlled trial</a></div>
+    <div class="card-meta">
+      <span>👤 Hsu NC et al.</span>
+      <span>📅 May 2026</span>
+      <span><a href="https://doi.org/10.5826/tuj.2026.18577" target="_blank" class="doi-link">↗ PubMed</a></span>
+    </div>
+    <div class="summary">69 medical students were randomized to near-peer teaching with multi-camera remote faculty supervision versus traditional faculty-led POCUS training; the NPT+RS group achieved non-inferior competency outcomes across both image acquisition and interpretation assessments. This low-contact curriculum demonstrates that POCUS education can scale without proportional faculty time. Directly applicable to programs with limited ultrasound faculty or infection-control constraints.</div>
+    <div class="abstract-wrap">
+      <div class="abstract">
+        <div class="abstract-label">Abstract</div>
+        Traditional POCUS teaching relying on hands-on faculty-led practice faces challenges of limited scalability and infection-control constraints. A low-contact curriculum was designed integrating near-peer teaching with faculty remote supervision and evaluated in a randomized controlled pilot trial. 69 senior medical students were assigned to NPT+RS (n=34) or faculty-led control (n=35). Both groups received identical didactic and hands-on training; the NPT+RS group incorporated multi-camera remote supervision technology.
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-relevance="moderate" data-topic="training">
+    <div class="card-header">
+      <span class="journal-badge tier4">Ultrasound J</span>
+      <span class="relevance-badge rel-moderate">🔵 Moderate</span>
+    </div>
+    <div class="card-title"><a href="https://pubmed.ncbi.nlm.nih.gov/42153633/" target="_blank">Progress in lung ultrasound education: An updated systematic review</a></div>
+    <div class="card-meta">
+      <span>👤 Borggaard PG et al.</span>
+      <span>📅 May 2026</span>
+      <span><a href="https://doi.org/10.5826/tuj.2026.18361" target="_blank" class="doi-link">↗ PubMed</a></span>
+    </div>
+    <div class="summary">This updated systematic review (Medline/EMBASE/Cochrane/Scopus, 2017–2025) identified 23 studies on thoracic ultrasound training with pre/post assessments, finding substantial variability in training methods, assessment tools, and standards across nations and centers. Different training approaches produce variable learning outcomes, but simulation and structured curricula consistently showed benefit. Calls for internationally standardized TUS training frameworks.</div>
+    <div class="abstract-wrap">
+      <div class="abstract">
+        <div class="abstract-label">Abstract</div>
+        Thoracic ultrasound (TUS) is integrated across clinical specialties to aid diagnosis and procedural safety. Significant variability in training approaches and standards exists between nations and centers. A PRISMA-compliant literature search from Jan 2017 to May 2025 in Medline, Embase, Cochrane Library and Scopus identified studies involving TUS education using pre- and post-assessments of learning. 12,460 studies were screened; 23 met inclusion criteria.
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-relevance="high" data-topic="clinical">
+    <div class="card-header">
+      <span class="journal-badge tier4">Ultrasound J</span>
+      <span class="relevance-badge rel-high">🔬 High</span>
+    </div>
+    <div class="card-title"><a href="https://pubmed.ncbi.nlm.nih.gov/42095341/" target="_blank">Prediction of post-extubation stridor using ultrasound measurement of subglottic airway diameter</a></div>
+    <div class="card-meta">
+      <span>👤 Jongthitinon N et al.</span>
+      <span>📅 May 2026</span>
+      <span><a href="https://doi.org/10.5826/tuj.2026.18517" target="_blank" class="doi-link">↗ PubMed</a></span>
+    </div>
+    <div class="summary">In this prospective PICU observational study of children aged 1 month–15 years, subglottic airway diameter ultrasonography was evaluated for predicting post-extubation stridor within 48 hours. Sonographic subglottic measurement demonstrated useful predictive value for PES, adding an objective, radiation-free tool to the pre-extubation assessment toolkit. Clinically relevant for PICU physicians managing pediatric ventilator weaning.</div>
+    <div class="abstract-wrap">
+      <div class="abstract">
+        <div class="abstract-label">Abstract</div>
+        Post-extubation stridor (PES) is a common complication in children in the PICU. Despite evaluation of various predictive tests, no single method consistently demonstrates strong predictive value. This prospective observational study in a university-affiliated PICU enrolled children aged 1 month–15 years who passed a spontaneous breathing trial and were scheduled for extubation. Subglottic diameter ultrasonography was evaluated for predicting PES within 48h post-extubation.
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-relevance="high" data-topic="training">
+    <div class="card-header">
+      <span class="journal-badge tier4">AEM Educ Train</span>
+      <span class="relevance-badge rel-high">🔬 High</span>
+    </div>
+    <div class="card-title"><a href="https://pubmed.ncbi.nlm.nih.gov/42110192/" target="_blank">A Multi-Center Study on eFAST Learning Curves for Emergency Medicine Residents Using CUSUM Analysis</a></div>
+    <div class="card-meta">
+      <span>👤 Roppolo LP et al.</span>
+      <span>📅 May 2026</span>
+      <span><a href="https://doi.org/10.1002/aet2.70166" target="_blank" class="doi-link">↗ PubMed</a></span>
+    </div>
+    <div class="summary">This multicenter retrospective review used CUSUM methodology to analyze eFAST competency in EM interns across three programs sharing the same curriculum, finding that initial competency is likely achieved in fewer than 25 scans — challenging the field's longstanding benchmark. These data could reshape residency ultrasound rotation requirements and shift focus toward competency-based rather than volume-based credentialing. Directly relevant to EM program directors and ultrasound faculty.</div>
+    <div class="abstract-wrap">
+      <div class="abstract">
+        <div class="abstract-label">Abstract</div>
+        EM interns have been required to complete a minimum of 25 eFAST scans during residency training, despite limited evidence supporting this benchmark. This multicenter retrospective review analyzed prospectively gathered QA data from eFAST scans by EM interns during their one-month ultrasound rotation at three sites using the same eFAST curriculum and QA rubric. CUSUM analysis was applied to identify the point of competency attainment for each learner.
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-relevance="high" data-topic="clinical">
+    <div class="card-header">
+      <span class="journal-badge tier4">JACC Case Rep</span>
+      <span class="relevance-badge rel-high">🔬 High</span>
+    </div>
+    <div class="card-title"><a href="https://pubmed.ncbi.nlm.nih.gov/41995664/" target="_blank">Bedside Ultrasound-Driven Emergency Stenting for Spontaneous Carotid Artery Dissection: Clinical and Technical Insights</a></div>
+    <div class="card-meta">
+      <span>👤 Terracciano F et al.</span>
+      <span>📅 Apr 2026</span>
+      <span><a href="https://doi.org/10.1016/j.jaccas.2026.107929" target="_blank" class="doi-link">↗ PubMed</a></span>
+    </div>
+    <div class="summary">In this case report, a 52-year-old with spontaneous carotid artery dissection deteriorated neurologically (NIHSS 3→15); repeat bedside carotid Doppler ultrasound revealed critical stenosis from a rapidly expanding intramural hematoma, directly prompting emergency stenting that achieved neurological recovery. Illustrates how serial bedside Doppler monitoring altered clinical management in a time-critical neurovascular emergency. Highlights POCUS as a real-time safety net when repeat CT is impractical.</div>
+    <div class="abstract-wrap">
+      <div class="abstract">
+        <div class="abstract-label">Abstract</div>
+        Spontaneous carotid artery dissection is a leading cause of stroke in young adults. A 52-year-old man presented with minor stroke (NIHSS 3) due to spontaneous carotid artery dissection. Initial imaging showed nonsignificant stenosis and medical therapy was started. Following sudden neurological deterioration (NIHSS 15), bedside carotid Doppler ultrasound revealed critical stenosis caused by a rapidly expanding intramural hematoma, guiding immediate emergency stenting with neurological recovery.
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-relevance="moderate" data-topic="training">
+    <div class="card-header">
+      <span class="journal-badge tier4">Open Heart</span>
+      <span class="relevance-badge rel-moderate">🔵 Moderate</span>
+    </div>
+    <div class="card-title"><a href="https://pubmed.ncbi.nlm.nih.gov/42203239/" target="_blank">Point-of-care echocardiography training pathways: a global perspective and the need for standardisation</a></div>
+    <div class="card-meta">
+      <span>👤 Abbawy M et al.</span>
+      <span>📅 May 2026</span>
+      <span><a href="https://doi.org/10.1136/openhrt-2026-004057" target="_blank" class="doi-link">↗ PubMed</a></span>
+    </div>
+    <div class="summary">This global review examines heterogeneity in point-of-care echocardiography training pathways internationally, outlining advantages and challenges to standardization, documentation practices, and quality assurance. Current curricula, training methods, and international models are reviewed to propose an ideal national training framework. Joins the growing literature calling for minimum competency standards and examinations in POCUS echo.</div>
+    <div class="abstract-wrap">
+      <div class="abstract">
+        <div class="abstract-label">Abstract</div>
+        Point-of-care ultrasound echocardiography has become an indispensable tool for rapid clinical assessment in emergency medicine. This review examines the heterogeneity in training pathways globally, outlining advantages and challenges to standardisation, documentation practices, and quality assurance. Current curricula, training methods, and international models are reviewed; positive elements are identified and a framework for an ideal national training programme is proposed, including the potential role of examination and higher education institutions.
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-relevance="high" data-topic="training">
+    <div class="card-header">
+      <span class="journal-badge tier4">BMC Cardiovasc Disord</span>
+      <span class="relevance-badge rel-high">🔬 High</span>
+    </div>
+    <div class="card-title"><a href="https://pubmed.ncbi.nlm.nih.gov/42192501/" target="_blank">Point-of-care ultrasound for emergency pericardiocentesis: a multidimensional CUSUM analysis of the learning curve</a></div>
+    <div class="card-meta">
+      <span>👤 Tang X et al.</span>
+      <span>📅 May 2026</span>
+      <span><a href="https://doi.org/10.1186/s12872-026-05919-1" target="_blank" class="doi-link">↗ PubMed</a></span>
+    </div>
+    <div class="summary">CUSUM analysis of 33 consecutive US-guided pericardiocenteses by a single novice operator under supervision characterizes the learning curve for this life-saving procedure across multiple dimensions including procedural efficiency, operator confidence, and positioning. Data provide the first structured learning curve benchmarks for emergency US-guided pericardial drainage. Clinically actionable for training programs establishing pericardiocentesis competency standards.</div>
+    <div class="abstract-wrap">
+      <div class="abstract">
+        <div class="abstract-label">Abstract</div>
+        Emergency POCUS-guided percutaneous pericardial catheter drainage (US-GPPCD) is a life-saving intervention for cardiac tamponade, yet the learning curve among novice operators in emergency settings remains poorly characterized, especially for multidimensional metrics. This study evaluated the learning curve, procedural efficiency, operator confidence, complications, and influence of operator positioning for US-GPPCD performed by a single novice operator under supervision in 33 consecutive patients.
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-relevance="moderate" data-topic="training">
+    <div class="card-header">
+      <span class="journal-badge tier4">J Am Assoc Nurse Pract</span>
+      <span class="relevance-badge rel-moderate">🔵 Moderate</span>
+    </div>
+    <div class="card-title"><a href="https://pubmed.ncbi.nlm.nih.gov/42201345/" target="_blank">Eye tracking to understand performance in point-of-care lung ultrasound: Insights from nurse practitioners training</a></div>
+    <div class="card-meta">
+      <span>👤 Lavoie P et al.</span>
+      <span>📅 May 2026</span>
+      <span><a href="https://doi.org/10.1097/JXX.0000000000001293" target="_blank" class="doi-link">↗ PubMed</a></span>
+    </div>
+    <div class="summary">35 nurse practitioners wore eye-tracking glasses during simulation-based lung POCUS training; visual attention patterns during image acquisition and interpretation were compared with performance scores and expert benchmarks. Eye-tracking revealed distinct gaze patterns between high and low performers, and differences from expert patterns. Offers a novel objective method for identifying learning gaps and directing coaching during POCUS education.</div>
+    <div class="abstract-wrap">
+      <div class="abstract">
+        <div class="abstract-label">Abstract</div>
+        Teaching and assessing lung POCUS requires attention to both image acquisition and interpretation. Eye tracking offers an objective approach to examining visual attention during scanning. This convergent mixed-methods study used eye tracking to characterize visual attention and performance during lung POCUS training. 35 nurse practitioners completed simulation-based lung POCUS training while wearing eye-tracking glasses; three experts completed the same protocol for comparison.
+      </div>
     </div>
   </div>
 
 </div>
 
-<!-- ===== TIER 3: IF 3–10 ===== -->
-<div class="section-label">🟢 Tier 3 · IF 3–10</div>
-<div class="grid">
-
-  <!-- Chest: EBUS cryobiopsy consensus -->
-  <div class="card" data-rel="mod" data-tags="lung">
-    <div class="card-header">
-      <span class="journal-badge tier3">Chest · IF ~9</span>
-      <span class="rel-badge rel-mod">Moderate Relevance</span>
-    </div>
-    <div class="card-title">
-      <a href="https://doi.org/10.1016/j.chest.2026.03.027" target="_blank">
-        Procedural Techniques, Airway Management, and Specimen Acquisition for Peripheral Lung Transbronchial and Endobronchial Ultrasound-Guided Cryobiopsy: A Modified Delphi Consensus Statement
-      </a>
-    </div>
-    <div class="card-meta">
-      <span>Beattie JA, Kapp CM, Thiboutot J et al.</span>
-      <span>May 21, 2026</span>
-      <span>PMID: 41956150</span>
-    </div>
-    <div class="summary">
-      A 32-expert international Delphi consensus produced 31 consensus statements on indications, technique, specimen handling, and required expertise for EBUS-guided and peripheral transbronchial cryobiopsy with the 1.1mm cryoprobe. This is the first formal expert guidance for non-ILD applications of EBUS-guided cryobiopsy. Relevant for POCUS practitioners in pulmonary and critical care who use endobronchial ultrasound for procedural guidance and biopsy.
-    </div>
-    <div class="abstract-section">
-      <div class="abstract-label">Abstract</div>
-      <div class="abstract-text">An international panel of bronchoscopy experts used a modified Delphi methodology (4 rounds, May-November 2025) covering peripheral transbronchial cryobiopsy, EBUS-guided cryobiopsy, airway/anesthesia/complication management, and specimen handling. Consensus was obtained on 31 statements; no consensus on 17 statements. Consensus defined as ≥80% agreement.</div>
-    </div>
-  </div>
-
-  <!-- J Ultrasound Med: Cardio+Lung US dyspnea differentiation -->
-  <div class="card" data-rel="high" data-tags="lung cardiac">
-    <div class="card-header">
-      <span class="journal-badge tier3">J Ultrasound Med · IF ~3.5</span>
-      <span class="rel-badge rel-high">🔬 High Relevance</span>
-    </div>
-    <div class="card-title">
-      <a href="https://doi.org/10.1002/jum.70317" target="_blank">
-        A Predictive Model for Differential Diagnosis of Cardiogenic and Non-cardiogenic Dyspnea in Patients with Chronic Kidney Disease Based on Cardio and Lung Ultrasound Features
-      </a>
-    </div>
-    <div class="card-meta">
-      <span>Zhao H, Zhang Z, Long L et al.</span>
-      <span>May 27, 2026</span>
-      <span>PMID: 42200685</span>
-    </div>
-    <div class="summary">
-      This study combined echocardiographic parameters (E/e', IVC diameter) with lung US B-line patterns and pleural findings to build a diagnostic model distinguishing cardiogenic pulmonary edema from non-cardiogenic dyspnea in CKD patients, achieving AUC 0.97 (training) and 0.89 (validation). A simplified β-weighted scoring system was validated with comparable performance. This directly addresses a core POCUS challenge in the ED and dialysis unit: B-lines are sensitive but non-specific, and integrating cardiac parameters sharply improves specificity.
-    </div>
-    <div class="abstract-section">
-      <div class="abstract-label">Abstract</div>
-      <div class="abstract-text">Retrospective study of 215 training and 56 validation CKD stage 3-5 patients. Multivariable logistic regression identified E/e' (OR 1.180), IVC diameter (OR 1.240), bilateral symmetric B-pattern (OR 9.720), bilateral continuous B-pattern (OR 13.777), irregular pleural line ≥1 region (OR 0.078), consolidation ≥1 region (OR 0.039), and pleural effusion ≥1 region (OR 4.732) as independent cardiogenic pulmonary edema predictors. AUC 0.9703 training, 0.8910 validation.</div>
-    </div>
-  </div>
-
-  <!-- J Ultrasound Med: POCUS pediatric hip effusion -->
-  <div class="card" data-rel="high" data-tags="">
-    <div class="card-header">
-      <span class="journal-badge tier3">J Ultrasound Med · IF ~3.5</span>
-      <span class="rel-badge rel-high">🔬 High Relevance</span>
-    </div>
-    <div class="card-title">
-      <a href="https://doi.org/10.1002/jum.70286" target="_blank">
-        Point-of-Care Ultrasound for the Diagnosis of Hip Effusion in Children Presenting to the Emergency Department With Atraumatic Limp or Hip Pain: A Scoping Review
-      </a>
-    </div>
-    <div class="card-meta">
-      <span>Chan N, McCreary DJ, Nedyalkova A, Snelling PJ</span>
-      <span>May 8, 2026</span>
-      <span>PMID: 42104527</span>
-    </div>
-    <div class="summary">
-      This scoping review of 13 studies confirms that POCUS for pediatric hip effusion achieves sensitivity 80–98% and specificity 91–98% when performed by emergency physicians with variable training. Evidence supports POCUS as accurate for atraumatic limp evaluation and feasible for guiding hip arthrocentesis. Concludes that large prospective multicenter studies are needed to validate POCUS-integrated clinical decision rules for this common pediatric ED presentation.
-    </div>
-    <div class="abstract-section">
-      <div class="abstract-label">Abstract</div>
-      <div class="abstract-text">Thirteen studies met inclusion: 3 prospective studies, 9 retrospective cohorts, 1 case report. Studies predominantly evaluated diagnostic accuracy of POCUS performed by emergency medicine physicians vs. radiology ultrasound, and feasibility of POCUS-guided hip arthrocentesis. Diagnostic accuracy high: sensitivity 80%-98%, specificity 91%-98%. Further research required with large prospective multicenter studies.</div>
-    </div>
-  </div>
-
-</div>
-
-<!-- ===== TIER 4: IF < 3 ===== -->
-<div class="section-label">🔵 Tier 4 · IF &lt; 3 &amp; Specialty Journals</div>
-<div class="grid">
-
-  <!-- AI-guided FoCUS (Eur Heart J Digital Health) -->
-  <div class="card" data-rel="high" data-tags="cardiac ai education">
-    <div class="card-header">
-      <span class="journal-badge tier4">Eur Heart J Digital Health · IF ~2.5</span>
-      <span class="rel-badge rel-high">🔬 High Relevance</span>
-    </div>
-    <div class="card-title">
-      <a href="https://doi.org/10.1093/ehjdh/ztag066" target="_blank">
-        Smarter FoCUS: AI-guided focused cardiac ultrasound enables novice detection of left ventricular dysfunction
-      </a>
-    </div>
-    <div class="card-meta">
-      <span>Kane CJ, Borgeson J, Greason C et al. (Mayo Clinic)</span>
-      <span>May 13, 2026</span>
-      <span>PMID: 42169733</span>
-    </div>
-    <div class="summary">
-      Prospective study of 496 adults: novice operators with only a 4-hour training used AI-guided FoCUS (Philips Lumify + UltraSight guidance + Mayo Clinic AI interpretation) to detect LVEF &lt;40% with sensitivity 96.2%, specificity 95.4%, and NPV 99.8%—with a median scan time of 4 minutes. A validation cohort of 344 showed sensitivity 100%, specificity 99.4%. This is one of the most directly impactful POCUS papers of the year: AI-guided handheld echo by a non-expert achieves near-flawless LV screening with minimal training.
-    </div>
-    <div class="abstract-section">
-      <div class="abstract-label">Abstract</div>
-      <div class="abstract-text">40 subjects (8.3%) exhibited moderate or greater LV dilatation and 28 (5.6%) had LVEF &lt;40%. Adequate views achieved in 95.0% (AI) and 97.4% (expert). Two-step screening—only abnormal AI reads or uninterpretable scans reviewed by experts (15.1%)—achieved sensitivity 96.2%, specificity 95.4%, PPV 54.3%, NPV 99.8%. Prospective validation (n=344): sensitivity 100%, specificity 99.4%.</div>
-    </div>
-  </div>
-
-  <!-- Deep learning + echo for DCM genotype -->
-  <div class="card" data-rel="mod" data-tags="cardiac ai">
-    <div class="card-header">
-      <span class="journal-badge tier4">Eur Heart J Digital Health · IF ~2.5</span>
-      <span class="rel-badge rel-mod">Moderate Relevance</span>
-    </div>
-    <div class="card-title">
-      <a href="https://doi.org/10.1093/ehjdh/ztag068" target="_blank">
-        Deep learning model for genotype prediction from echocardiographic videos in non-ischaemic dilated cardiomyopathy
-      </a>
-    </div>
-    <div class="card-meta">
-      <span>Kiyohara Y, Fukagawa S, Nomura S et al.</span>
-      <span>May 5, 2026</span>
-      <span>PMID: 42169734</span>
-    </div>
-    <div class="summary">
-      A deep learning model based on EchoNet-Dynamic predicted genotype positivity in dilated cardiomyopathy from apical 4-chamber echo videos (AUC 0.64), improving to AUC 0.76 when combined with the Madrid clinical scoring system. Demonstrates that echo video contains latent genotype-predictive information extractable by AI. Relevant to POCUS practitioners as future bedside AI tools may guide targeted genetic testing from routine echo acquisitions.
-    </div>
-    <div class="abstract-section">
-      <div class="abstract-label">Abstract</div>
-      <div class="abstract-text">258 DCM patients; 117 (45.3%) had genetic variants. Deep learning model AUC 0.64. Madrid genotype score AUC 0.73. Combined model AUC 0.76 (significant improvement from Madrid score alone, p=0.03). Most common genotype was LMNA (30.8%), followed by TTN (18.8%).</div>
-    </div>
-  </div>
-
-  <!-- AI-assisted cardiopulmonary monitoring + POCUS review -->
-  <div class="card" data-rel="high" data-tags="ai lung cardiac">
-    <div class="card-header">
-      <span class="journal-badge tier4">Curr Opin Crit Care · IF ~2.5</span>
-      <span class="rel-badge rel-high">🔬 High Relevance</span>
-    </div>
-    <div class="card-title">
-      <a href="https://doi.org/10.1097/MCC.0000000000001385" target="_blank">
-        Emerging technologies and AI-assisted tools in cardiopulmonary monitoring
-      </a>
-    </div>
-    <div class="card-meta">
-      <span>Orozco N, Prager R, Arntfield R</span>
-      <span>Apr 30, 2026</span>
-      <span>PMID: 42019488</span>
-    </div>
-    <div class="summary">
-      This state-of-the-art review from the Western Critical Care group synthesizes AI applications across critical care monitoring, with dedicated focus on how AI enables automated POCUS acquisition guidance and automated cardiac/pulmonary interpretation for novice users. Highlights that AI POCUS models can predict deterioration, hypotension, cardiac arrest, and sepsis hours before clinical manifestation. Notes that fewer than 2% of AI systems have undergone clinical integration—underscoring the gap between research and bedside deployment.
-    </div>
-    <div class="abstract-section">
-      <div class="abstract-label">Abstract</div>
-      <div class="abstract-text">Reviews AI applications enhancing waveform interpretation, automating POCUS, enabling predictive monitoring, and extending advanced assessment into low-resource settings. AI models identify deterioration earlier than conventional tools and predict hypotension, cardiac arrest, and sepsis hours in advance. In POCUS, AI enables real-time acquisition guidance and automated cardiac/pulmonary interpretation, allowing novice users to obtain expert-quality studies. Fewer than 2% of AI systems remain clinically integrated.</div>
-    </div>
-  </div>
-
-  <!-- AI fracture detection via US meta-analysis -->
-  <div class="card" data-rel="high" data-tags="ai">
-    <div class="card-header">
-      <span class="journal-badge tier4">The Ultrasound Journal · IF ~2</span>
-      <span class="rel-badge rel-high">🔬 High Relevance</span>
-    </div>
-    <div class="card-title">
-      <a href="https://doi.org/10.5826/tuj.2026.18778" target="_blank">
-        Diagnostic performance of artificial intelligence in fracture detection with ultrasound: A systematic review and meta-analysis
-      </a>
-    </div>
-    <div class="card-meta">
-      <span>Xie M, Kim JJ, Im JH et al. (University of Alberta)</span>
-      <span>May 20, 2026</span>
-      <span>PMID: 42163701</span>
-    </div>
-    <div class="summary">
-      Meta-analysis of 8 studies evaluating deep learning for bone fracture detection on ultrasound images (predominantly pediatric upper extremity fractures in the ED). Pooled sensitivity 0.77 (95% CI 0.69–0.83), specificity 0.90 (95% CI 0.86–0.94); patient-level analyses yielded sensitivity 0.89 and specificity 0.94 with sROC AUC 0.91. AI-assisted POCUS fracture detection is highly specific—sufficient to reliably identify fractures in high-pretest-probability pediatric ED cases, potentially reducing X-ray exposure.
-    </div>
-    <div class="abstract-section">
-      <div class="abstract-label">Abstract</div>
-      <div class="abstract-text">580 papers identified; 8 studies included. 21 reported model evaluations from 5 studies with extractable data. Pooled sensitivity 0.77 (95% CI 0.69-0.83), specificity 0.90 (95% CI 0.86-0.94), overall sROC AUC 0.91. Patient-level evaluations: sensitivity 0.89 (0.81-0.94), specificity 0.94 (0.81-0.98). Risk of bias assessed via QUADAS-2. Predominantly pediatric cohorts presenting with suspected upper extremity fractures.</div>
-    </div>
-  </div>
-
-  <!-- Modified lung US score pediatric pneumonia -->
-  <div class="card" data-rel="high" data-tags="lung">
-    <div class="card-header">
-      <span class="journal-badge tier4">The Ultrasound Journal · IF ~2</span>
-      <span class="rel-badge rel-high">🔬 High Relevance</span>
-    </div>
-    <div class="card-title">
-      <a href="https://doi.org/10.5826/tuj.2026.18875" target="_blank">
-        Modified lung ultrasound score and related findings in children with Mycoplasma pneumoniae pneumonia
-      </a>
-    </div>
-    <div class="card-meta">
-      <span>Xie W, Lin W, Zhuang Q, Lyu G</span>
-      <span>May 21, 2026</span>
-      <span>PMID: 42163724</span>
-    </div>
-    <div class="summary">
-      In 186 children with pneumonia, mycoplasma etiology was associated with a significantly higher modified lung US score (median 15 vs 8–9 for viral/bacterial), more extensive solid lung lesions, older age, and fever without bronchospasm. These sonographic features can be recognized in real-time at the bedside. Practical implication: a high MLUS with extensive consolidation in a school-age febrile child without wheezing should raise clinical suspicion for Mycoplasma, potentially guiding empiric macrolide therapy.
-    </div>
-    <div class="abstract-section">
-      <div class="abstract-label">Abstract</div>
-      <div class="abstract-text">186 children enrolled (Jan-Dec 2023): mycoplasma (n=74), viral (n=63), bacterial (n=49) pneumonia. Median MLUS: mycoplasma 15 (IQR 10-22) vs bacterial 9 (5-16) vs viral 8 (5-15), P&lt;0.05. Mycoplasma group: more febrile symptoms, extensive solid lung lesions, fewer asthmatic symptoms, older median age 6 years vs 3 years for others.</div>
-    </div>
-  </div>
-
-  <!-- POCUS training RCT -->
-  <div class="card" data-rel="high" data-tags="education">
-    <div class="card-header">
-      <span class="journal-badge tier4">The Ultrasound Journal · IF ~2</span>
-      <span class="rel-badge rel-high">🔬 High Relevance</span>
-    </div>
-    <div class="card-title">
-      <a href="https://doi.org/10.5826/tuj.2026.18577" target="_blank">
-        Point-of-care ultrasound training using near-peer training and remote supervision: A pilot randomized controlled trial
-      </a>
-    </div>
-    <div class="card-meta">
-      <span>Hsu NC, Yang CW, Lin YF et al. (National Taiwan University Hospital)</span>
-      <span>May 20, 2026</span>
-      <span>PMID: 42159600</span>
-    </div>
-    <div class="summary">
-      In a pilot RCT, 69 medical students randomized to near-peer teaching + remote faculty supervision vs. traditional faculty-led POCUS training showed equivalent overall OSCE scores (74.9 vs 76.8, p=0.614) and equivalent domain scores across indication, acquisition, interpretation, and medical decision-making. The near-peer group reported higher perceived usefulness and were more likely to endorse routine post-training OSCE assessment. Near-peer + remote POCUS training is non-inferior and highly scalable—directly addressing the global POCUS workforce gap.
-    </div>
-    <div class="abstract-section">
-      <div class="abstract-label">Abstract</div>
-      <div class="abstract-text">69 senior medical students: NPT+RS (n=34) vs faculty-led (n=35). Total OSCE scores (74.9 vs 76.8, p=0.614). Domain scores did not differ. Single item: lower interpretation performance for posterolateral alveolar/pleural syndrome in NPT+RS group (4.6 vs 6.5, p=0.013). NPT+RS group: higher perceived usefulness (all p&lt;0.05), more often perceived OSCE as revealing weaknesses (p=0.002).</div>
-    </div>
-  </div>
-
-  <!-- Lung ultrasound education systematic review -->
-  <div class="card" data-rel="high" data-tags="lung education">
-    <div class="card-header">
-      <span class="journal-badge tier4">The Ultrasound Journal · IF ~2</span>
-      <span class="rel-badge rel-high">🔬 High Relevance</span>
-    </div>
-    <div class="card-title">
-      <a href="https://doi.org/10.5826/tuj.2026.18361" target="_blank">
-        Progress in lung ultrasound education: An updated systematic review
-      </a>
-    </div>
-    <div class="card-meta">
-      <span>Borggaard PG, Kildegaard C, Laursen CB et al.</span>
-      <span>May 19, 2026</span>
-      <span>PMID: 42153633</span>
-    </div>
-    <div class="summary">
-      PRISMA systematic review of 68 studies (2017–2025) on thoracic US training methods across specialties. Most interventions improved test scores; class-based + hands-on training was most common. Critical finding: assessment validity was rarely addressed, and translation to safe clinical use is poorly studied across all modalities. Provides a comprehensive benchmark for where TUS education programs succeed and where they fall short.
-    </div>
-    <div class="abstract-section">
-      <div class="abstract-label">Abstract</div>
-      <div class="abstract-text">12,460 studies screened; 68 included. Physicians primary audience in 65%; 29% other healthcare professionals. Class-based teaching most common (66%), sometimes combined with web-based (16%). 84% involved practical training on humans (63%). 10 RCTs, 4 non-randomized comparison studies identified. Most tools led to significant improvement in test scores; assessment validity rarely addressed.</div>
-    </div>
-  </div>
-
-  <!-- POCUS MCL/meniscus meta-analysis -->
-  <div class="card" data-rel="high" data-tags="">
-    <div class="card-header">
-      <span class="journal-badge tier4">The Ultrasound Journal · IF ~2</span>
-      <span class="rel-badge rel-high">🔬 High Relevance</span>
-    </div>
-    <div class="card-title">
-      <a href="https://doi.org/10.5826/tuj.2026.18171" target="_blank">
-        Diagnostic accuracy of ultrasound in assessing medial collateral ligament and medial meniscus injuries: A systematic review and meta-analysis
-      </a>
-    </div>
-    <div class="card-meta">
-      <span>Potter M, Smith A (University of Essex)</span>
-      <span>May 18, 2026</span>
-      <span>PMID: 42148467</span>
-    </div>
-    <div class="summary">
-      Meta-analysis of 14 studies (MCL: n=713, MM: n=969) showed ultrasound has high specificity for MCL injuries (sensitivity 0.83, specificity 0.96, AUC 0.90) and moderate sensitivity for medial meniscus tears (sensitivity 0.85, specificity 0.89, AUC 0.88). These data support POCUS as a practical, low-cost initial screening tool in the ED for medial knee injury evaluation, particularly for MCL where specificity is sufficient to guide immediate management without awaiting MRI.
-    </div>
-    <div class="abstract-section">
-      <div class="abstract-label">Abstract</div>
-      <div class="abstract-text">MCL: 9 studies (713 patients), pooled sensitivity 0.83 (0.76-0.88), specificity 0.96 (0.91-0.98), DOR 117.8, AUC 0.90, I²=0%. Medial Meniscus: 12 studies (969 patients), sensitivity 0.85 (0.82-0.88), specificity 0.89 (0.81-0.94), DOR 45, AUC 0.88, I²=70.6% for specificity. Overall risk of bias low; moderate certainty for MCL, low for MM.</div>
-    </div>
-  </div>
-
-  <!-- Subglottic US for post-extubation stridor -->
-  <div class="card" data-rel="high" data-tags="lung airway">
-    <div class="card-header">
-      <span class="journal-badge tier4">The Ultrasound Journal · IF ~2</span>
-      <span class="rel-badge rel-high">🔬 High Relevance</span>
-    </div>
-    <div class="card-title">
-      <a href="https://doi.org/10.5826/tuj.2026.18517" target="_blank">
-        Prediction of post-extubation stridor using ultrasound measurement of subglottic airway diameter
-      </a>
-    </div>
-    <div class="card-meta">
-      <span>Jongthitinon N, Saelim K, Kritsanepaiboon S et al.</span>
-      <span>May 7, 2026</span>
-      <span>PMID: 42095341</span>
-    </div>
-    <div class="summary">
-      In 176 PICU children (PES rate 18.75%), intracricoid peritubular free space (IPFS) &lt;2.08mm by subglottic ultrasound showed 80% sensitivity and 65% specificity for predicting post-extubation stridor—outperforming both subglottic ratio and leak percentage testing. This practical POCUS application in pediatric critical care provides a non-invasive pre-extubation assessment tool. IPFS measurement is straightforward and could be readily incorporated into extubation readiness bundles.
-    </div>
-    <div class="abstract-section">
-      <div class="abstract-label">Abstract</div>
-      <div class="abstract-text">Prospective study in university-affiliated PICU, children aged 1 month-15 years. PES in 33/176 (18.75%) patients. Subglottic ratio &lt;1.30: sensitivity 70%, specificity 65%, accuracy 66%. IPFS &lt;2.08mm: sensitivity 80%, specificity 65%, accuracy 68%. Leak percentage &lt;36.77% at 25 cmH₂O: sensitivity 80%, specificity 47%, accuracy 53%. AUC values: SR 0.664, IPFS 0.691, leak percentage 0.648.</div>
-    </div>
-  </div>
-
-  <!-- Echo video segmentation Mamba -->
-  <div class="card" data-rel="mod" data-tags="cardiac ai">
-    <div class="card-header">
-      <span class="journal-badge tier4">IEEE Trans Med Imaging · IF ~2</span>
-      <span class="rel-badge rel-mod">Moderate Relevance</span>
-    </div>
-    <div class="card-title">
-      <a href="https://doi.org/10.1109/TMI.2026.3697520" target="_blank">
-        Echocardiography Video Segmentation via Mamba-based Spatiotemporal Synergistic Network and Adaptive-dynamic Learning
-      </a>
-    </div>
-    <div class="card-meta">
-      <span>Sun Y, Chen G, Guo J, Wu H</span>
-      <span>May 27, 2026</span>
-      <span>PMID: 42202178</span>
-    </div>
-    <div class="summary">
-      MSSNet applies the Mamba sequence modeling architecture to semi-supervised echocardiographic video segmentation, outperforming current SOTA methods on CAMUS and EchoNet-Dynamic benchmarks while improving inference speed for real-time clinical deployment. The spatiotemporal synergistic guidance module uses historical frame context to handle speckle noise and dynamic ventricular changes. This technical advance will underpin the next generation of automated POCUS measurement tools at the bedside.
-    </div>
-    <div class="abstract-section">
-      <div class="abstract-label">Abstract</div>
-      <div class="abstract-text">Proposes MSSNet with spatiotemporal synergistic guidance (SSG) module, region-wise adaptive cross-mix (RAC) and dynamic offset correction (DOC) for semi-supervised echo segmentation. Experiments on CAMUS and EchoNet-Dynamic demonstrate superior segmentation accuracy and notable improvements in inference speed vs. SOTA. Code available at https://github.com/SSS666-klk/MSSNet.</div>
-    </div>
-  </div>
-
-</div>
-
-<!-- Footer -->
 <div class="footer">
-  <p>Last updated: <strong>May 29, 2026</strong> &nbsp;·&nbsp; Next scan will find articles published after <strong>May 29, 2026</strong></p>
-  <p style="margin-top:8px;">All article data sourced from <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank">PubMed</a> (National Library of Medicine). DOI links provided for all articles.</p>
-  <p style="margin-top:6px; font-size:0.78rem;">Scheduled weekly · POCUS Literature Scout · excellentphysician.com</p>
+  <p>Last updated: <strong>2026-05-29</strong> &nbsp;|&nbsp; Next scan will find articles published after <strong>2026-05-29</strong></p>
+  <p style="margin-top:0.5rem;">Sources: PubMed (queries A–D) &nbsp;|&nbsp; Articles deduplicated by PMID &nbsp;|&nbsp; Filtered by ultrasound keyword gate &nbsp;|&nbsp; Sorted by journal impact factor</p>
+  <p style="margin-top:0.5rem; font-size:0.72rem; color:#484f58;">Data sourced from PubMed/NCBI. Always verify clinical information against primary sources before clinical application.</p>
 </div>
 
 <script>
-  function filterArticles(tag, btn) {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.card').forEach(card => {
-      if (tag === 'all') {
-        card.classList.remove('hidden');
-      } else if (tag === 'high') {
-        card.classList.toggle('hidden', card.dataset.rel !== 'high');
-      } else {
-        const tags = (card.dataset.tags || '').split(' ');
-        card.classList.toggle('hidden', !tags.includes(tag));
-      }
-    });
-  }
+function filterCards(type, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const cards = document.querySelectorAll('.card');
+  cards.forEach(card => {
+    const rel = card.dataset.relevance;
+    const topic = card.dataset.topic;
+    let show = true;
+    if (type === 'high') show = rel === 'high';
+    else if (type === 'moderate') show = rel === 'moderate';
+    else if (type === 'training') show = topic === 'training';
+    else if (type === 'ai') show = topic === 'ai';
+    else if (type === 'clinical') show = topic === 'clinical';
+    card.classList.toggle('hidden', !show);
+  });
+}
 </script>
-
 </body>
 </html>
