@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>POCUS Literature Scout</title>
+<style>
+  :root{
+    --bg:#0d1117; --card:#161b22; --border:#30363d;
+    --accent:#58a6ff; --green:#2ea043; --text:#e6edf3; --text2:#8b949e;
+    --red:#da3633; --orange:#d29922; --blue:#388bfd;
+  }
+  *{box-sizing:border-box;}
+  body{
+    background:var(--bg); color:var(--text); font-family:system-ui,-apple-system,'Inter',sans-serif;
+    margin:0; padding:0 0 60px 0;
+  }
+  header{
+    padding:40px 24px 24px; border-bottom:1px solid var(--border); position:relative; overflow:hidden;
+  }
+  header svg.pulse{position:absolute; top:0; right:0; opacity:0.15; height:100%;}
+  h1{margin:0 0 6px; font-size:28px; letter-spacing:-0.5px;}
+  .subtitle{color:var(--text2); font-size:14px; margin:0 0 4px;}
+  .caveat{
+    margin-top:16px; padding:12px 16px; background:#1c2128; border:1px solid var(--orange);
+    border-radius:8px; color:#e3b341; font-size:13px; max-width:820px; line-height:1.5;
+  }
+  .filters{display:flex; gap:10px; padding:20px 24px 0; flex-wrap:wrap;}
+  .filter-btn{
+    background:var(--card); border:1px solid var(--border); color:var(--text);
+    padding:8px 16px; border-radius:20px; font-size:13px; cursor:pointer;
+  }
+  .filter-btn.active{border-color:var(--accent); color:var(--accent);}
+  .divider{
+    margin:32px 24px 12px; padding-bottom:8px; border-bottom:1px solid var(--border);
+    font-size:16px; font-weight:600; color:var(--text);
+  }
+  .cards{display:grid; grid-template-columns:repeat(auto-fill,minmax(360px,1fr)); gap:16px; padding:0 24px;}
+  .card{
+    background:var(--card); border:1px solid var(--border); border-radius:10px; padding:18px;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .card:hover{border-color:var(--accent);}
+  .badges{display:flex; gap:8px; margin-bottom:10px; flex-wrap:wrap;}
+  .badge{font-size:11px; padding:3px 9px; border-radius:12px; font-weight:600; letter-spacing:.3px;}
+  .badge.journal{background:#21262d; color:var(--text2); border:1px solid var(--border);}
+  .badge.tier-em{background:rgba(46,160,67,.15); color:var(--green); border:1px solid var(--green);}
+  .badge.tier-innov{background:rgba(88,166,255,.15); color:var(--accent); border:1px solid var(--accent);}
+  .badge.tier-bg{background:rgba(139,148,158,.15); color:var(--text2); border:1px solid var(--text2);}
+  .badge.score3{background:rgba(218,54,51,.15); color:#ff7b72; border:1px solid var(--red);}
+  .badge.score2{background:rgba(210,153,34,.15); color:var(--orange); border:1px solid var(--orange);}
+  .badge.score1{background:rgba(56,139,253,.15); color:var(--blue); border:1px solid var(--blue);}
+  .title a{color:var(--text); text-decoration:none; font-size:16px; font-weight:600; line-height:1.35;}
+  .title a:hover{color:var(--accent); text-decoration:underline;}
+  .meta{color:var(--text2); font-size:12.5px; margin:8px 0 12px;}
+  .summary{font-size:13.5px; line-height:1.55; color:var(--text);}
+  .abstract{
+    max-height:0; overflow:hidden; opacity:0; transition:max-height .35s ease, opacity .35s ease, margin-top .35s ease;
+    font-size:12.5px; color:var(--text2); line-height:1.5; border-top:1px dashed var(--border);
+  }
+  .card:hover .abstract{max-height:400px; opacity:1; margin-top:12px; padding-top:12px;}
+  footer{padding:32px 24px; color:var(--text2); font-size:12.5px; border-top:1px solid var(--border); margin-top:20px;}
+  .count{font-size:11px; color:var(--text2); margin-left:4px;}
+</style>
+</head>
+<body>
+
+<header>
+  <svg class="pulse" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+    <polyline points="0,100 60,100 80,40 100,160 120,20 140,180 160,100 400,100"
+      fill="none" stroke="#58a6ff" stroke-width="2"/>
+  </svg>
+  <h1>POCUS Literature Scout</h1>
+  <p class="subtitle">Weekly scan — articles relevant to point-of-care ultrasound in emergency medicine</p>
+  <p class="subtitle">Search window: approx. 2026-08-03 → 2026-08-10 · 10 articles found · 3 high relevance</p>
+  <div class="caveat">
+    <strong>Data-access note:</strong> This sandboxed session could not reach PubMed's E-utilities API
+    (eutils.ncbi.nlm.nih.gov) or fetch PubMed/PMC pages directly — both are outside this environment's
+    network allowlist, and PubMed's own bot-protection (reCAPTCHA) blocks automated page fetches. This run was
+    compiled instead via web search, so: publication dates are approximate (not date-filtered against
+    PubMed's index), journal names are shown only where confirmed, and full verbatim abstracts could not be
+    retrieved — the hover panel notes this per article rather than showing fabricated text. To restore full
+    fidelity (exact "since last run" filtering, verified journals/impact factors, verbatim abstracts), add
+    <code>eutils.ncbi.nlm.nih.gov</code> to the network allowlist in Settings → Capabilities.
+  </div>
+</header>
+
+<div class="filters">
+  <button class="filter-btn active" data-filter="all">All <span class="count">(10)</span></button>
+  <button class="filter-btn" data-filter="em">🏥 EM Practice <span class="count">(7)</span></button>
+  <button class="filter-btn" data-filter="innov">🔬 Innovations <span class="count">(3)</span></button>
+</div>
+
+<div class="divider">🏥 Emergency Medicine Practice</div>
+<div class="cards" id="cards-em">
+
+  <div class="card" data-cat="em">
+    <div class="badges">
+      <span class="badge journal">Journal unconfirmed</span>
+      <span class="badge tier-em">EM Practice</span>
+      <span class="badge score3">RCT</span>
+    </div>
+    <div class="title"><a href="https://pubmed.ncbi.nlm.nih.gov/41412717/" target="_blank">A point-of-care ultrasound-driven diagnostic pathway for emergency department patients with dyspnoea: a randomised controlled trial</a></div>
+    <div class="meta">2026 · PMID 41412717</div>
+    <div class="summary">A randomised controlled trial testing whether a POCUS-driven diagnostic pathway for ED patients presenting with dyspnoea increases the proportion discharged within 24 hours, compared with standard workup. Directly tests whether structured POCUS use changes ED throughput and disposition for a very common chief complaint. Landmark-tier evidence for anyone building or defending a dyspnoea POCUS pathway.</div>
+    <div class="abstract">Full verbatim abstract unavailable — PubMed direct fetch blocked in this environment. See PubMed link for the original abstract.</div>
+  </div>
+
+  <div class="card" data-cat="em">
+    <div class="badges">
+      <span class="badge journal">Journal unconfirmed</span>
+      <span class="badge tier-em">EM Practice</span>
+      <span class="badge score3">Meta-analysis</span>
+    </div>
+    <div class="title"><a href="https://pubmed.ncbi.nlm.nih.gov/41562216/" target="_blank">Diagnostic accuracy of lung ultrasound for the identification of acute respiratory distress syndrome: A systematic review and meta-analysis</a></div>
+    <div class="meta">2026 · PMID 41562216</div>
+    <div class="summary">A systematic review and meta-analysis pooling studies on lung ultrasound's diagnostic accuracy for identifying ARDS. Synthesizes the evidence base for using LUS as a bedside alternative or adjunct to chest imaging in critically ill patients. Useful reference for resuscitation-bay and ICU-adjacent POCUS protocols.</div>
+    <div class="abstract">Full verbatim abstract unavailable — PubMed direct fetch blocked in this environment. See PubMed link for the original abstract.</div>
+  </div>
+
+  <div class="card" data-cat="em">
+    <div class="badges">
+      <span class="badge journal">Journal unconfirmed</span>
+      <span class="badge tier-em">EM Practice</span>
+      <span class="badge score2">Narrative review</span>
+    </div>
+    <div class="title"><a href="https://pubmed.ncbi.nlm.nih.gov/41581010/" target="_blank">Point-of-care ultrasound in the modern era of emergency medicine: a narrative review of the recent literature</a></div>
+    <div class="meta">Jan 2026 · PMID 41581010</div>
+    <div class="summary">A narrative review organizing recent POCUS literature into five themes: ultrasound-guided regional anesthesia, POCUS in resuscitation, diagnostic POCUS, technology/AI, and POCUS governance/administration. A good single-article orientation to where the field has moved in the past year. Worth skimming as a landscape check rather than for a single clinical answer.</div>
+    <div class="abstract">Full verbatim abstract unavailable — PubMed direct fetch blocked in this environment. See PubMed link for the original abstract.</div>
+  </div>
+
+  <div class="card" data-cat="em">
+    <div class="badges">
+      <span class="badge journal">Journal unconfirmed</span>
+      <span class="badge tier-em">EM Practice</span>
+      <span class="badge score2">Narrative review</span>
+    </div>
+    <div class="title"><a href="https://pubmed.ncbi.nlm.nih.gov/41542289/" target="_blank">Diagnostic Applications of Point-of-Care Ultrasound in Emergency Medicine: A Narrative Review</a></div>
+    <div class="meta">Jan 2026 · PMID 41542289</div>
+    <div class="summary">Reviews diagnostic POCUS applications in the ED with emphasis on trauma assessment, lung ultrasound, focused cardiac ultrasound, AAA evaluation, and early pregnancy complications. Concludes POCUS improves diagnostic accuracy, speeds critical interventions, and sharpens triage across a broad range of ED presentations. A solid reference review for justifying POCUS use across multiple chief complaints.</div>
+    <div class="abstract">Full verbatim abstract unavailable — PubMed direct fetch blocked in this environment. See PubMed link for the original abstract.</div>
+  </div>
+
+  <div class="card" data-cat="em">
+    <div class="badges">
+      <span class="badge journal">Journal unconfirmed</span>
+      <span class="badge tier-em">EM Practice</span>
+      <span class="badge score2">Review</span>
+    </div>
+    <div class="title"><a href="https://pubmed.ncbi.nlm.nih.gov/41045789/" target="_blank">Emergency medicine updates: Point-of-care ultrasound in cardiac arrest</a></div>
+    <div class="meta">2026 · PMID 41045789</div>
+    <div class="summary">An evidence-based update on POCUS use across multiple components of cardiac arrest management — from rhythm/activity assessment to reversible-cause screening. Aimed squarely at resuscitation-room decision-making. Relevant to anyone updating a cardiac arrest POCUS checklist or code-team protocol.</div>
+    <div class="abstract">Full verbatim abstract unavailable — PubMed direct fetch blocked in this environment. See PubMed link for the original abstract.</div>
+  </div>
+
+  <div class="card" data-cat="em">
+    <div class="badges">
+      <span class="badge journal">Journal unconfirmed</span>
+      <span class="badge tier-em">EM Practice</span>
+      <span class="badge score2">Delphi consensus</span>
+    </div>
+    <div class="title"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12910989/" target="_blank">Consensus on core POCUS applications for Korean emergency medicine training: a Delphi study</a></div>
+    <div class="meta">2026 · PMC12910989</div>
+    <div class="summary">A three-round modified Delphi survey of 71 certified POCUS instructors producing a nationwide, consensus-based core POCUS curriculum for EM residency training in Korea. Relevant to anyone benchmarking or revising a residency POCUS curriculum against international consensus standards. Methodologically solid (structured Delphi), though its direct applicability outside Korea's training system is limited.</div>
+    <div class="abstract">Full verbatim abstract unavailable — PubMed/PMC direct fetch blocked in this environment. See link for the original abstract.</div>
+  </div>
+
+  <div class="card" data-cat="em">
+    <div class="badges">
+      <span class="badge journal">Nursing Reports</span>
+      <span class="badge tier-em">EM Practice</span>
+      <span class="badge score1">RCT protocol</span>
+    </div>
+    <div class="title"><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12113786/" target="_blank">Comparison of Traditional and Ultrasound-Guided Techniques for Vascular Access in Patients with Difficult Venous Access in Emergency Departments: Randomized Clinical Trial Protocol</a></div>
+    <div class="meta">2025 · PMC12113786</div>
+    <div class="summary">Published trial protocol (not yet results) for a randomised comparison of traditional vs. ultrasound-guided IV access techniques in ED patients with difficult venous access. Worth bookmarking so the eventual results paper doesn't get missed. Lower relevance for now since it reports methodology only, no outcome data yet.</div>
+    <div class="abstract">Full verbatim abstract unavailable — PubMed/PMC direct fetch blocked in this environment. See link for the original abstract.</div>
+  </div>
+
+</div>
+
+<div class="divider">🔬 Novel Innovations</div>
+<div class="cards" id="cards-innov">
+
+  <div class="card" data-cat="innov">
+    <div class="badges">
+      <span class="badge journal">Diagnostics (MDPI)</span>
+      <span class="badge tier-innov">Innovation</span>
+      <span class="badge score3">Diagnostic accuracy</span>
+    </div>
+    <div class="title"><a href="https://www.mdpi.com/2075-4418/16/4/598" target="_blank">A Lung Ultrasound Radiomics-Based Machine Learning Model for Diagnosing Acute Heart Failure in the Emergency Department</a></div>
+    <div class="meta">2026 · Diagnostics</div>
+    <div class="summary">Builds a radiomics/ML model on lung ultrasound images to diagnose acute heart failure in the ED, reporting AUC 0.976, 90.1% accuracy, 91.1% sensitivity, and 89.1% specificity. Strong reported performance for an automated LUS-based AHF classifier — if it replicates externally, this is a genuine candidate for bedside triage augmentation. Still pre-clinical-deployment stage; worth tracking for validation studies.</div>
+    <div class="abstract">Full verbatim abstract unavailable — direct fetch of this publisher's page was not attempted in this run. See link for the original abstract.</div>
+  </div>
+
+  <div class="card" data-cat="innov">
+    <div class="badges">
+      <span class="badge journal">Mayo Clinic Proc: Digital Health</span>
+      <span class="badge tier-innov">Innovation</span>
+      <span class="badge score2">Prospective cohort</span>
+    </div>
+    <div class="title"><a href="https://www.mcpdigitalhealth.org/article/S2949-7612(26)00021-0/fulltext" target="_blank">Artificial Intelligence–Enhanced Cardiac Point-of-Care Ultrasound: A Prospective Single-Arm Study</a></div>
+    <div class="meta">2026 · Mayo Clinic Proceedings: Digital Health</div>
+    <div class="summary">A prospective single-arm study of 660 ED/internal-medicine patients scanned with AI-enhanced handheld ultrasound providing automated assessment of ventricular function, valvular disease, pericardial effusion, and IVC size. Adds to the evidence base for AI-augmented handheld cardiac POCUS in non-cardiology hands. Single-arm design (no comparator) limits how strongly conclusions can be drawn.</div>
+    <div class="abstract">Full verbatim abstract unavailable — direct fetch of this publisher's page was not attempted in this run. See link for the original abstract.</div>
+  </div>
+
+  <div class="card" data-cat="innov">
+    <div class="badges">
+      <span class="badge journal">Journal unconfirmed</span>
+      <span class="badge tier-innov">Innovation</span>
+      <span class="badge score1">Narrative review</span>
+    </div>
+    <div class="title"><a href="https://journals.sagepub.com/doi/10.1177/08850666261427329" target="_blank">Artificial Intelligence in Point-of-Care Ultrasound</a></div>
+    <div class="meta">2026 · Wu, Arntfield, Millington</div>
+    <div class="summary">A narrative overview of AI applications across critical-care POCUS: image acquisition, interpretation, education, task automation, procedural guidance, program development, and QA. Positions automated LVEF assessment as the most mature AI application in cardiac POCUS today. Useful as a scoping primer before diving into individual validation studies.</div>
+    <div class="abstract">Full verbatim abstract unavailable — direct fetch of this publisher's page was not attempted in this run. See link for the original abstract.</div>
+  </div>
+
+</div>
+
+<footer>
+  Last updated: 2026-08-10 (run via scheduled task, no interactive session) · Next scan will look for articles after this date.<br>
+  Search window used: last 7 days (no prior last-run timestamp was available to this session — storage used by the interactive skill isn't reachable from a scheduled/autonomous run, so it defaulted to a 7-day weekly window).<br>
+  Coverage caveat: compiled via web search rather than the PubMed E-utilities API (see banner above) — treat as a best-effort digest, not an exhaustive index of everything published in the window.
+</footer>
+
+<script>
+  document.querySelectorAll('.filter-btn').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const f=btn.dataset.filter;
+      document.querySelectorAll('.card').forEach(c=>{
+        c.style.display = (f==='all' || c.dataset.cat===f) ? '' : 'none';
+      });
+      document.querySelectorAll('.divider').forEach(d=>{
+        if(f==='all'){ d.style.display=''; }
+        else if(f==='em'){ d.style.display = d.textContent.includes('Emergency Medicine') ? '' : 'none'; }
+        else if(f==='innov'){ d.style.display = d.textContent.includes('Innovations') ? '' : 'none'; }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
